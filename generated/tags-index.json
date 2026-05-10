@@ -1,0 +1,11 @@
+{
+  "ingestion": [
+    "202605021115_GoCortexSnippet.json"
+  ],
+  "multi-tenant": [
+    "202605021115_GoCortexSnippet.json"
+  ],
+  "parsing": [
+    "202605021115_GoCortexSnippet.json"
+  ]
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GoCortexIO Snippets - Cortex XSIAM</title>
+    <link>https://snippets.gocortex.io/</link>
+    <description>Short, actionable Cortex tips, published as they ship. (Cortex XSIAM only.)</description>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 02 May 2026 11:15:00 +0000</lastBuildDate>
+    <atom:link href="https://snippets.gocortex.io/module/cortex-xsiam.rss" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Cortex XSIAM] My Test Problem.</title>
+      <link>https://snippets.gocortex.io/module/cortex-xsiam</link>
+      <guid isPermaLink="false">gocortex-snippet-202605021115</guid>
+      <pubDate>Sat, 02 May 2026 11:15:00 +0000</pubDate>
+      <category>Cortex XSIAM</category>
+      <description>My Test Problem.
+
+My Test Solution</description>
+    </item>
+  </channel>
+</rss>
