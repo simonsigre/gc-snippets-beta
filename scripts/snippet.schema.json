@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gocortexio.local/schema/snippet.json",
+  "title": "GoCortexIO Snippet",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "created_at",
+    "product_module",
+    "module_slug",
+    "scenario",
+    "snippet",
+    "time_to_implement"
+  ],
+  "dependentRequired": {
+    "media_type": ["media_base64"],
+    "media_base64": ["media_type"]
+  },
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Schema generation this snippet was authored against. Always start at 1; advance only when the generator and Worker support the new shape."
+    },
+    "supersedes": {
+      "type": "string",
+      "pattern": "^[0-9]{12}$",
+      "description": "Optional id of an older snippet that this one replaces. The pointed-at snippet must declare a matching superseded_by."
+    },
+    "superseded_by": {
+      "type": "string",
+      "pattern": "^[0-9]{12}$",
+      "description": "Optional id of a newer snippet that replaces this one. The pointed-at snippet must declare a matching supersedes."
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[0-9]{12}$",
+      "description": "Twelve-digit timestamp matching the filename prefix (YYYYMMDDHHMM)."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 UTC timestamp."
+    },
+    "product_module": {
+      "type": "string",
+      "minLength": 1
+    },
+    "module_slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "scenario": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "The situation the tip addresses (one or two sentences)."
+    },
+    "snippet": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 10000,
+      "description": "The actual tip body."
+    },
+    "time_to_implement": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "tags": {
+      "type": "array",
+      "maxItems": 15,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "media_type": {
+      "type": "string",
+      "pattern": "^$|^[a-z]+/[a-zA-Z0-9.+-]+$",
+      "description": "MIME type of the embedded media. Empty string when no media is attached; supplied together with media_base64."
+    },
+    "media_base64": {
+      "type": "string",
+      "maxLength": 1048576,
+      "description": "Base64-encoded media payload. Empty string when no media is attached; supplied together with media_type."
+    },
+    "code_blocks": {
+      "type": "array",
+      "maxItems": 8,
+      "description": "Optional ordered list of code listings rendered on the snippet detail page. Each entry has a short language label and a verbatim code body. The empty array means no listings.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["language", "code"],
+        "properties": {
+          "language": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9+-]{0,15}$",
+            "description": "Short language identifier such as python, bash, yaml, json, xql."
+          },
+          "code": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 16384,
+            "description": "The listing body, verbatim. ASCII only is recommended; the renderer escapes HTML."
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "description": "When media_type is empty, media_base64 must also be empty.",
+      "if": {
+        "required": ["media_type"],
+        "properties": { "media_type": { "const": "" } }
+      },
+      "then": {
+        "properties": { "media_base64": { "const": "" } }
+      }
+    },
+    {
+      "description": "When media_type is populated, media_base64 must also be populated.",
+      "if": {
+        "required": ["media_type"],
+        "properties": { "media_type": { "minLength": 1 } }
+      },
+      "then": {
+        "properties": { "media_base64": { "minLength": 1 } }
+      }
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "created_at": "2026-01-03T00:03:00Z",
+    "file": "202601030003_GoCortexSnippet.json",
+    "id": "202601030003",
+    "module": "Cortex XDR",
+    "module_slug": "cortex-xdr",
+    "scenario": "Fixture: a second XDR snippet, used to confirm latest-by-module dedup.",
+    "tags": [
+      "detection",
+      "tuning"
+    ]
+  },
+  {
+    "created_at": "2026-01-02T00:02:00Z",
+    "file": "202601020002_GoCortexSnippet.json",
+    "id": "202601020002",
+    "module": "Cortex XSIAM",
+    "module_slug": "cortex-xsiam",
+    "scenario": "Fixture: a snippet with an inline media payload.",
+    "tags": [
+      "detection",
+      "parsing"
+    ]
+  },
+  {
+    "created_at": "2026-01-01T00:01:00Z",
+    "file": "202601010001_GoCortexSnippet.json",
+    "id": "202601010001",
+    "module": "Cortex XDR",
+    "module_slug": "cortex-xdr",
+    "scenario": "Fixture: a basic snippet with no media.",
+    "tags": [
+      "detection",
+      "tuning"
+    ]
+  }
+]

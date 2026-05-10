@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# SPDX-FileCopyrightText: GoCortexIO
+#
+# Pre-commit hook for GoCortex Snippets.
+#
+# Runs the generator's validator pass against the snippets the commit is
+# about to introduce. Blocks the commit if any snippet fails validation.
+#
+# Install with the standard one-liner once per clone:
+#
+#   git config core.hooksPath scripts/git-hooks
+#
+# The hook only runs when the staged changes touch files under snippets/
+# or the generator script itself. Any other commit is passed through
+# without invoking node, so commits that only touch documentation, the
+# Worker, or CI configuration stay fast.
+
+set -euo pipefail
+
+# List staged files that could affect snippet validation. The diff is
+# limited to added, copied, and modified entries so deletions do not
+# trigger the validator.
+staged="$(git diff --cached --name-only --diff-filter=ACM \
+  -- 'snippets/**' 'scripts/generate-indexes.mjs' 'scripts/snippet.schema.json' \
+     'scripts/validate-snippet.mjs' 'scripts/build-builder-worker.mjs' \
+     '**/_builder_worker.js' \
+  || true)"
+
+if [ -z "${staged}" ]; then
+  exit 0
+fi
+
+if ! command -v node >/dev/null 2>&1; then
+  echo "[ERROR] pre-commit: node is not on PATH; install Node 24+ or skip the hook with --no-verify" >&2
+  exit 1
+fi
+
+# Confirm the builder Worker still has the shared validator inlined
+# verbatim. If the shared rules changed without rerunning the build
+# step, fail the commit before the snippet validation pass so the fix
+# is obvious.
+node scripts/build-builder-worker.mjs --check
+
+# --check runs the inline schema validation over /snippets and exits
+# without writing any files. The validator's own grepable output makes
+# it obvious which snippet failed and why.
+exec node scripts/generate-indexes.mjs --check

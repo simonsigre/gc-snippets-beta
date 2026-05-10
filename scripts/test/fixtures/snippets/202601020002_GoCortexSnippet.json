@@ -1,0 +1,16 @@
+{
+  "created_at": "2026-01-02T00:02:00Z",
+  "id": "202601020002",
+  "media_base64": "R0lGODlhAQABAAAAACw=",
+  "media_type": "image/gif",
+  "module_slug": "cortex-xsiam",
+  "product_module": "Cortex XSIAM",
+  "scenario": "Fixture: a snippet with an inline media payload.",
+  "snippet": "Body of the media-bearing fixture snippet.",
+  "tags": [
+    "detection",
+    "parsing"
+  ],
+  "time_to_implement": "10 minutes",
+  "schema_version": 1
+}

@@ -1,0 +1,129 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# SPDX-FileCopyrightText: GoCortexIO
+
+name: Generate snippet indexes
+
+# Runs whenever a snippet is added, edited, or removed. The push job
+# validates every snippet, regenerates the lightweight index files under
+# /generated, and commits the result back to the branch so consumers
+# (the Cloudflare Worker, downstream syndication jobs) always read a
+# consistent view from GitHub raw.
+#
+# Future publishing destinations should be added as additional jobs that
+# `needs: validate-and-generate` so they only run after the indexes are
+# known to be valid. Suggested follow-ons:
+#   - twitter      : post the latest snippet to X/Twitter
+#   - linkedin     : post the latest snippet to LinkedIn
+#   - discord      : POST a webhook payload to a Discord channel
+#   - teams        : POST a webhook payload to a Microsoft Teams channel
+#   - telegram     : send the latest snippet via the Telegram Bot API
+#   - html-export  : write a static HTML mirror under /public
+#   - api-export   : push a flattened JSON bundle to a CDN
+#
+# `generated/rss.xml` is produced by the generator itself and committed
+# under /generated alongside the JSON indexes; the Cloudflare Worker
+# exposes it at /rss.xml. Set the repository variable `SITE_URL` to the
+# public site origin (no trailing slash, e.g. https://gocortex.example)
+# so feed and sitemap URLs point at the production Worker. If unset, the
+# generator falls back to a placeholder which is fine for local
+# validation but not production.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'snippets/**'
+      - 'scripts/generate-indexes.mjs'
+      - 'scripts/snippet.schema.json'
+      - 'scripts/validate-snippet.mjs'
+      - 'scripts/build-builder-worker.mjs'
+      - 'scripts/test/**'
+      - '**/_builder_worker.js'
+      - '.github/workflows/generate-indexes.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: generate-indexes-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate-and-generate:
+    name: Validate snippets and regenerate indexes
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+        with:
+          fetch-depth: 1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e  # v6.4.0
+        with:
+          node-version: '24'
+
+      - name: Run generator validator failure-mode tests
+        # Stages a fixture snippet per documented validation rule, runs
+        # the generator with --check, and asserts the exact "[FAIL] ..."
+        # line per case. Catches regressions in any single error message
+        # (code_blocks rules, slug pattern, media pairing,
+        # supersedes/superseded_by mutual check, etc).
+        run: node --test scripts/test/validator.test.mjs
+
+      - name: Run generator snapshot tests
+        # Pinned snapshots of generator output for a small fixture corpus.
+        # Catches accidental changes to index shapes, RSS structure, and
+        # the auto-generated README before they reach the live site. Runs
+        # before the real generator so a broken generator fails fast on
+        # its own tests rather than silently overwriting /generated.
+        run: node --test scripts/test/snapshot.test.mjs
+
+      - name: Run Worker route tests
+        # Drives the Cloudflare Worker source (_worker.js, located
+        # automatically) with global fetch stubbed against the local
+        # /generated and /snippets trees. Catches Worker routing,
+        # rendering, and header regressions before deploy. The test
+        # invokes the generator itself first, so it runs against
+        # whatever the snapshot test just produced. Skips cleanly on a
+        # clone that does not include the Worker source.
+        run: node --test scripts/test/worker.test.mjs
+
+      - name: Run "build from empty" test
+        # Stages the real snippets corpus into a fresh tmp tree with no
+        # /generated/ and no /README.md, runs the generator there, and
+        # asserts the full expected output set materialises. Pins the
+        # guarantee that a fresh clone with an empty (or missing)
+        # /generated directory builds end-to-end without needing any
+        # placeholder files in git.
+        run: node --test scripts/test/from-empty.test.mjs
+
+      - name: Run shared validator differential test
+        # Confirms the browser builder Worker still has the shared
+        # per-field validator (scripts/validate-snippet.mjs) inlined
+        # verbatim, and that a corpus of valid and invalid snippet
+        # objects produces the same verdict on both the Node side and
+        # the inlined browser side. Catches drift caused by editing
+        # _builder_worker.js by hand or forgetting to rerun
+        # scripts/build-builder-worker.mjs after a rule change.
+        run: node --test scripts/test/validator.test.mjs
+
+      - name: Validate snippets and regenerate indexes
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+        run: node scripts/generate-indexes.mjs
+
+      - name: Commit regenerated indexes
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/ README.md
+          if git diff --cached --quiet; then
+            echo "No index changes to commit."
+            exit 0
+          fi
+          git commit -m "chore(generated): refresh snippet indexes and README"
+          git push
+

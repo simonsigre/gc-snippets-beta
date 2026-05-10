@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GoCortexIO Snippets - Cortex XSIAM</title>
+    <link>https://test.example/</link>
+    <description>Short, actionable Cortex tips, published as they ship. (Cortex XSIAM only.)</description>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 02 Jan 2026 00:02:00 +0000</lastBuildDate>
+    <atom:link href="https://test.example/module/cortex-xsiam.rss" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Cortex XSIAM] Fixture: a snippet with an inline media payload.</title>
+      <link>https://test.example/module/cortex-xsiam</link>
+      <guid isPermaLink="false">gocortex-snippet-202601020002</guid>
+      <pubDate>Fri, 02 Jan 2026 00:02:00 +0000</pubDate>
+      <category>Cortex XSIAM</category>
+      <description>Fixture: a snippet with an inline media payload.
+
+Body of the media-bearing fixture snippet.</description>
+    </item>
+  </channel>
+</rss>

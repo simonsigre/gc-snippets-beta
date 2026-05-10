@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GoCortexIO Snippets - #detection</title>
+    <link>https://test.example/</link>
+    <description>Short, actionable Cortex tips, published as they ship. (Tagged &quot;detection&quot;.)</description>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 03 Jan 2026 00:03:00 +0000</lastBuildDate>
+    <atom:link href="https://test.example/tag/detection.rss" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Cortex XDR] Fixture: a second XDR snippet, used to confirm latest-by-module dedup.</title>
+      <link>https://test.example/module/cortex-xdr</link>
+      <guid isPermaLink="false">gocortex-snippet-202601030003</guid>
+      <pubDate>Sat, 03 Jan 2026 00:03:00 +0000</pubDate>
+      <category>Cortex XDR</category>
+      <description>Fixture: a second XDR snippet, used to confirm latest-by-module dedup.
+
+Body of the second XDR fixture snippet.</description>
+    </item>
+    <item>
+      <title>[Cortex XSIAM] Fixture: a snippet with an inline media payload.</title>
+      <link>https://test.example/module/cortex-xsiam</link>
+      <guid isPermaLink="false">gocortex-snippet-202601020002</guid>
+      <pubDate>Fri, 02 Jan 2026 00:02:00 +0000</pubDate>
+      <category>Cortex XSIAM</category>
+      <description>Fixture: a snippet with an inline media payload.
+
+Body of the media-bearing fixture snippet.</description>
+    </item>
+    <item>
+      <title>[Cortex XDR] Fixture: a basic snippet with no media.</title>
+      <link>https://test.example/module/cortex-xdr</link>
+      <guid isPermaLink="false">gocortex-snippet-202601010001</guid>
+      <pubDate>Thu, 01 Jan 2026 00:01:00 +0000</pubDate>
+      <category>Cortex XDR</category>
+      <description>Fixture: a basic snippet with no media.
+
+Body of the basic fixture snippet.</description>
+    </item>
+  </channel>
+</rss>

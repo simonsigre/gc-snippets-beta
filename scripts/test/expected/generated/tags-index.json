@@ -1,0 +1,14 @@
+{
+  "detection": [
+    "202601030003_GoCortexSnippet.json",
+    "202601020002_GoCortexSnippet.json",
+    "202601010001_GoCortexSnippet.json"
+  ],
+  "parsing": [
+    "202601020002_GoCortexSnippet.json"
+  ],
+  "tuning": [
+    "202601030003_GoCortexSnippet.json",
+    "202601010001_GoCortexSnippet.json"
+  ]
+}
