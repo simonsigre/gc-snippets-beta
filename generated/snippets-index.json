@@ -1,5 +1,18 @@
 [
   {
+    "created_at": "2026-05-10T03:16:00Z",
+    "file": "202605100316_GoCortexSnippet.json",
+    "id": "202605100316",
+    "module": "Cortex XSIAM",
+    "module_slug": "cortex-xsiam",
+    "scenario": "A security analyst notices an increase in authentication alerts within a Cortex XDR and XSIAM environment. To determine whether this is normal user behaviour or a possible brute-force attack, the analyst runs an XQL query to identify repeated failed login attempts coming from the same IP address.\n\nThe query searches authentication logs from the past 24 hours and highlights accounts with more than five failed sign-in attempts from a single remote IP.",
+    "tags": [
+      "agent",
+      "detection",
+      "xql"
+    ]
+  },
+  {
     "created_at": "2026-05-02T11:15:00Z",
     "file": "202605021115_GoCortexSnippet.json",
     "id": "202605021115",

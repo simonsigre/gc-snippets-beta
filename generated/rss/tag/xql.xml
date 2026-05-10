@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>GoCortexIO Snippets - Cortex XSIAM</title>
+    <title>GoCortexIO Snippets - #xql</title>
     <link>https://snippets.gocortex.io/</link>
-    <description>Short, actionable Cortex tips, published as they ship. (Cortex XSIAM only.)</description>
+    <description>Short, actionable Cortex tips, published as they ship. (Tagged &quot;xql&quot;.)</description>
     <language>en-us</language>
     <lastBuildDate>Sun, 10 May 2026 03:16:00 +0000</lastBuildDate>
-    <atom:link href="https://snippets.gocortex.io/module/cortex-xsiam.rss" rel="self" type="application/rss+xml" />
+    <atom:link href="https://snippets.gocortex.io/tag/xql.rss" rel="self" type="application/rss+xml" />
     <item>
       <title>[Cortex XSIAM] A security analyst notices an increase in authentication alerts within a Cortex XDR and XSIAM environment. To determine whether this is normal user behaviour or a possible brute-force attack, the analyst runs an XQL query to identify repeated failed login attempts coming from the same IP address.
 
@@ -20,16 +20,6 @@ The query searches authentication logs from the past 24 hours and highlights acc
 The query searches authentication logs from the past 24 hours and highlights accounts with more than five failed sign-in attempts from a single remote IP.
 
 Identify repeated failed login attempts from the same IP address during the past 24 hours.</description>
-    </item>
-    <item>
-      <title>[Cortex XSIAM] My Test Problem.</title>
-      <link>https://snippets.gocortex.io/module/cortex-xsiam</link>
-      <guid isPermaLink="false">gocortex-snippet-202605021115</guid>
-      <pubDate>Sat, 02 May 2026 11:15:00 +0000</pubDate>
-      <category>Cortex XSIAM</category>
-      <description>My Test Problem.
-
-My Test Solution</description>
     </item>
   </channel>
 </rss>

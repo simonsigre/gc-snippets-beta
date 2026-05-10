@@ -10,10 +10,11 @@ change the structure of this page, edit the generator.
 
 # GoCortex Snippets
 
-1 snippet published. Newest first.
+2 snippets published. Newest first.
 
 | Published (UTC) | Module | Scenario |
 | --- | --- | --- |
+| [2026-05-10 03:16 UTC](snippets/202605100316_GoCortexSnippet.json) | Cortex XSIAM | A security analyst notices an increase in authentication alerts within a Cortex XDR and XSIAM environment. To determine whether this is normal user behaviour or a possible brute-force attack, the analyst runs an XQL query to identify repeated failed login attempts coming from the same IP address.<br><br>The query searches authentication logs from the past 24 hours and highlights accounts with more than five failed sign-in attempts from a single remote IP. |
 | [2026-05-02 11:15 UTC](snippets/202605021115_GoCortexSnippet.json) | Cortex XSIAM | My Test Problem. |
 
 ## Licence
