@@ -1,14 +1,20 @@
 {
   "agent": [
+    "202605110522_GoCortexSnippet.json",
     "202605100316_GoCortexSnippet.json"
   ],
+  "alerts": [
+    "202605110522_GoCortexSnippet.json"
+  ],
   "detection": [
+    "202605110522_GoCortexSnippet.json",
     "202605100316_GoCortexSnippet.json"
   ],
   "ingestion": [
     "202605021115_GoCortexSnippet.json"
   ],
   "multi-tenant": [
+    "202605110522_GoCortexSnippet.json",
     "202605021115_GoCortexSnippet.json"
   ],
   "parsing": [
