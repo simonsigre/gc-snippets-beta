@@ -8,18 +8,24 @@
     <lastBuildDate>Mon, 11 May 2026 05:22:00 +0000</lastBuildDate>
     <atom:link href="https://snippets.gocortex.io/rss.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>[Cortex XDR] Whilst monitoring a high-value workstation, a security analyst recognises an unusual process attempting to reach out to a suspicious public IP address. Rather than abruptly terminating the connection—which might alert a sophisticated adversary that their presence has been detected—the team chooses to quietly steer this traffic towards a secure internal sinkhole.
+      <title>[Cortex XSIAM] Whilst monitoring a high-value workstation, a security analyst recognises an unusual process attempting to reach out to a suspicious public IP address. Rather than abruptly terminating the connection—which might alert a sophisticated adversary that their presence has been detected—the team chooses to quietly steer this traffic towards a secure internal sinkhole.
 
-Upon investigation, the Analyst identifies additional IP addresses that need to be sinkholed and adds these to the array. </title>
-      <link>https://snippets.gocortex.io/module/cortex-xdr</link>
+Upon investigation, the Analyst identifies additional IP addresses that need to be sinkholed and adds these to the array.
+</title>
+      <link>https://snippets.gocortex.io/module/cortex-xsiam</link>
       <guid isPermaLink="false">gocortex-snippet-202605110522</guid>
       <pubDate>Mon, 11 May 2026 05:22:00 +0000</pubDate>
-      <category>Cortex XDR</category>
+      <category>Cortex XSIAM</category>
       <description>Whilst monitoring a high-value workstation, a security analyst recognises an unusual process attempting to reach out to a suspicious public IP address. Rather than abruptly terminating the connection—which might alert a sophisticated adversary that their presence has been detected—the team chooses to quietly steer this traffic towards a secure internal sinkhole.
 
-Upon investigation, the Analyst identifies additional IP addresses that need to be sinkholed and adds these to the array. 
+Upon investigation, the Analyst identifies additional IP addresses that need to be sinkholed and adds these to the array.
 
-This script takes a Python list of IP addresses, joins them into a single comma-separated string, and passes them into one consolidated Windows Firewall rule using PowerShell. By using the -Force switch, it efficiently overwrites any previous version of the rule to ensure your entire &quot;naughty list&quot; is blocked in one clean sweep.</description>
+
+This script takes a Python list of IP addresses, joins them into a single comma-separated string, and passes them into one consolidated Windows Firewall rule using PowerShell. 
+
+By using the -Force switch, it efficiently overwrites any previous version of the rule to ensure your entire \&quot;naughty list\&quot; is blocked in one clean sweep. 
+
+To implement, run this script via `Action Center` %yourtenant%.paloaltonetworks.com/action-center/new/general?from=ALL , choose &quot;Run Endpoint Script&quot;, &quot;Code Snippet&quot;, paste the value from the code section under `Snippet` and then move through your target selection etc.</description>
     </item>
     <item>
       <title>[Cortex XSIAM] A security analyst notices an increase in authentication alerts within a Cortex XDR and XSIAM environment. To determine whether this is normal user behaviour or a possible brute-force attack, the analyst runs an XQL query to identify repeated failed login attempts coming from the same IP address.

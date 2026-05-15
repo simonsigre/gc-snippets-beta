@@ -1,14 +1,13 @@
 {
   "agent": [
-    "202605110522_GoCortexSnippet.json",
     "202605100316_GoCortexSnippet.json"
-  ],
-  "alerts": [
-    "202605110522_GoCortexSnippet.json"
   ],
   "detection": [
     "202605110522_GoCortexSnippet.json",
     "202605100316_GoCortexSnippet.json"
+  ],
+  "enrichment": [
+    "202605110522_GoCortexSnippet.json"
   ],
   "ingestion": [
     "202605021115_GoCortexSnippet.json"
@@ -20,7 +19,11 @@
   "parsing": [
     "202605021115_GoCortexSnippet.json"
   ],
+  "reporting": [
+    "202605110522_GoCortexSnippet.json"
+  ],
   "xql": [
+    "202605110522_GoCortexSnippet.json",
     "202605100316_GoCortexSnippet.json"
   ]
 }

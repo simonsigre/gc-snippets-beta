@@ -3,14 +3,15 @@
     "created_at": "2026-05-11T05:22:00Z",
     "file": "202605110522_GoCortexSnippet.json",
     "id": "202605110522",
-    "module": "Cortex XDR",
-    "module_slug": "cortex-xdr",
-    "scenario": "Whilst monitoring a high-value workstation, a security analyst recognises an unusual process attempting to reach out to a suspicious public IP address. Rather than abruptly terminating the connection—which might alert a sophisticated adversary that their presence has been detected—the team chooses to quietly steer this traffic towards a secure internal sinkhole.\n\nUpon investigation, the Analyst identifies additional IP addresses that need to be sinkholed and adds these to the array. ",
+    "module": "Cortex XSIAM",
+    "module_slug": "cortex-xsiam",
+    "scenario": "Whilst monitoring a high-value workstation, a security analyst recognises an unusual process attempting to reach out to a suspicious public IP address. Rather than abruptly terminating the connection—which might alert a sophisticated adversary that their presence has been detected—the team chooses to quietly steer this traffic towards a secure internal sinkhole.\n\nUpon investigation, the Analyst identifies additional IP addresses that need to be sinkholed and adds these to the array.\n",
     "tags": [
-      "agent",
-      "alerts",
       "detection",
-      "multi-tenant"
+      "enrichment",
+      "multi-tenant",
+      "reporting",
+      "xql"
     ]
   },
   {
