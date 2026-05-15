@@ -21,9 +21,9 @@ Upon investigation, the Analyst identifies additional IP addresses that need to 
 Upon investigation, the Analyst identifies additional IP addresses that need to be sinkholed and adds these to the array.
 
 
-This script takes a Python list of IP addresses, joins them into a single comma-separated string, and passes them into one consolidated Windows Firewall rule using PowerShell. 
+This script takes a Python list of IP addresses, joins them into a single comma-separated string, and passes them into one consolidated Windows Firewall rule using PowerShell.
 
-By using the -Force switch, it efficiently overwrites any previous version of the rule to ensure your entire \&quot;naughty list\&quot; is blocked in one clean sweep. 
+By using the -Force switch, it efficiently overwrites any previous version of the rule to ensure your entire &quot;naughty list&quot; is blocked in one clean sweep.
 
 To implement, run this script via `Action Center` %yourtenant%.paloaltonetworks.com/action-center/new/general?from=ALL , choose &quot;Run Endpoint Script&quot;, &quot;Code Snippet&quot;, paste the value from the code section under `Snippet` and then move through your target selection etc.</description>
     </item>
