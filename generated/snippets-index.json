@@ -1,5 +1,18 @@
 [
   {
+    "created_at": "2026-05-15T06:18:00Z",
+    "file": "202605150618_GoCortexSnippet.json",
+    "id": "202605150618",
+    "module": "Cortex XSIAM",
+    "module_slug": "cortex-xsiam",
+    "scenario": "Attackers use compromised WordPress sites to show fake \"Verify you are human\" prompts. These prompts trick users into running a PowerShell command from their clipboard, which then downloads and executes Vidar Stealer in memory.",
+    "tags": [
+      "detection",
+      "reporting",
+      "xql"
+    ]
+  },
+  {
     "created_at": "2026-05-11T05:22:00Z",
     "file": "202605110522_GoCortexSnippet.json",
     "id": "202605110522",

@@ -5,8 +5,20 @@
     <link>https://snippets.gocortex.io/</link>
     <description>Short, actionable Cortex tips, published as they ship. (Tagged &quot;reporting&quot;.)</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 11 May 2026 05:22:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 15 May 2026 06:18:00 +0000</lastBuildDate>
     <atom:link href="https://snippets.gocortex.io/tag/reporting.rss" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Cortex XSIAM] Attackers use compromised WordPress sites to show fake &quot;Verify you are human&quot; prompts. These prompts trick users into running a PowerShell command from their clipboard, which then downloads and executes Vidar Stealer in memory.</title>
+      <link>https://snippets.gocortex.io/module/cortex-xsiam</link>
+      <guid isPermaLink="false">gocortex-snippet-202605150618</guid>
+      <pubDate>Fri, 15 May 2026 06:18:00 +0000</pubDate>
+      <category>Cortex XSIAM</category>
+      <description>Attackers use compromised WordPress sites to show fake &quot;Verify you are human&quot; prompts. These prompts trick users into running a PowerShell command from their clipboard, which then downloads and executes Vidar Stealer in memory.
+
+Since the malware uses a &quot;living-off-the-land&quot; (LotL) approach by tricking the user into executing PowerShell, XQL is perfect for identifying the execution chain.
+
+Look for PowerShell executions where the command line contains suspicious patterns associated with clipboard pasting or hidden script execution.</description>
+    </item>
     <item>
       <title>[Cortex XSIAM] Whilst monitoring a high-value workstation, a security analyst recognises an unusual process attempting to reach out to a suspicious public IP address. Rather than abruptly terminating the connection—which might alert a sophisticated adversary that their presence has been detected—the team chooses to quietly steer this traffic towards a secure internal sinkhole.
 

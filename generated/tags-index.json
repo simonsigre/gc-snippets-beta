@@ -3,6 +3,7 @@
     "202605100316_GoCortexSnippet.json"
   ],
   "detection": [
+    "202605150618_GoCortexSnippet.json",
     "202605110522_GoCortexSnippet.json",
     "202605100316_GoCortexSnippet.json"
   ],
@@ -20,9 +21,11 @@
     "202605021115_GoCortexSnippet.json"
   ],
   "reporting": [
+    "202605150618_GoCortexSnippet.json",
     "202605110522_GoCortexSnippet.json"
   ],
   "xql": [
+    "202605150618_GoCortexSnippet.json",
     "202605110522_GoCortexSnippet.json",
     "202605100316_GoCortexSnippet.json"
   ]
