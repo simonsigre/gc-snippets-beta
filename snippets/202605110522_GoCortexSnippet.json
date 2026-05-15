@@ -20,5 +20,5 @@
     "detection",
     "multi-tenant"
   ],
-  "time_to_implement": "15 minutes"
+    "time_to_implement": "15 minutes - to implement, run this script via `Action Center` %yourtenant%.paloaltonetworks.com/action-center/new/general?from=ALL , choose \"Run Endpoint Script\", \"Code Snippet\", paste the value from the code section under `Snippet` and then move through your target selection etc."
 }
