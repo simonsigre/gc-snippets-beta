@@ -13,7 +13,8 @@
   "product_module": "Cortex XDR",
   "scenario": "Whilst monitoring a high-value workstation, a security analyst recognises an unusual process attempting to reach out to a suspicious public IP address. Rather than abruptly terminating the connection—which might alert a sophisticated adversary that their presence has been detected—the team chooses to quietly steer this traffic towards a secure internal sinkhole.\n\nUpon investigation, the Analyst identifies additional IP addresses that need to be sinkholed and adds these to the array. ",
   "schema_version": 1,
-  "snippet": "This script takes a Python list of IP addresses, joins them into a single comma-separated string, and passes them into one consolidated Windows Firewall rule using PowerShell. By using the -Force switch, it efficiently overwrites any previous version of the rule to ensure your entire \"naughty list\" is blocked in one clean sweep. To implement, run this script via `Action Center` %yourtenant%.paloaltonetworks.com/action-center/new/general?from=ALL , choose \\\"Run Endpoint Script\\\", \\\"Code Snippet\\\", paste the value from the code section under `Snippet` and then move through your target selection etc.".
+  "snippet": "This script takes a Python list of IP addresses, joins them into a single comma-separated string, and passes them into one consolidated Windows Firewall rule using PowerShell. By using the -Force switch, it efficiently overwrites any previous version of the rule to ensure your entire \"naughty list\" is blocked in one clean sweep. To implement, run this script via `Action Center` %yourtenant%.paloaltonetworks.com/action-center/new/general?from=ALL , choose \\\"Run Endpoint Script\\\", \\\"Code Snippet\\\", paste the value from the code section under `Snippet` and then move through your target selection etc."
+  .
   "tags": [
     "agent",
     "alerts",
