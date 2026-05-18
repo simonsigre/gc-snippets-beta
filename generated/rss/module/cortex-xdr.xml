@@ -5,8 +5,24 @@
     <link>https://snippets.gocortex.io/</link>
     <description>Short, actionable Cortex tips, published as they ship. (Cortex XDR only.)</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 18 May 2026 03:47:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 18 May 2026 03:58:00 +0000</lastBuildDate>
     <atom:link href="https://snippets.gocortex.io/module/cortex-xdr.rss" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Cortex XDR] Rundll32 loading a DLL by export with an HTTP path</title>
+      <link>https://snippets.gocortex.io/module/cortex-xdr</link>
+      <guid isPermaLink="false">gocortex-snippet-202605180358</guid>
+      <pubDate>Mon, 18 May 2026 03:58:00 +0000</pubDate>
+      <category>Cortex XDR</category>
+      <description>Rundll32 loading a DLL by export with an HTTP path
+
+Scenario: a scenario where an adversary uses `rundll32.exe` to execute code inside a benign-looking system process. A reliable tell is a command line that references an HTTP(S) URL, a UNC path, or a freshly written DLL in a
+user-writable directory, together with an export name after the comma.
+
+- https://attack.mitre.org/techniques/T1218/011/
+- https://lolbas-project.github.io/lolbas/Binaries/Rundll32/
+
+Logic: focuses on the LOLBin pattern where `rundll32` is asked to load a DLL from somewhere it ought never to load one (web URL or remote share). Triage by causality parent and by the DLL path on the command line.</description>
+    </item>
     <item>
       <title>[Cortex XDR] Imagine an environment in which an operator wants to run PowerShell without leaving readable script text on the command line. They base64-encode the payload and pass it via `-EncodedCommand` (or its short forms `-enc`, `-e`). This is a long-standing living-off-the-land pattern that still appears through 2025-2026 in initial-access and lateral-movement chains.</title>
       <link>https://snippets.gocortex.io/module/cortex-xdr</link>

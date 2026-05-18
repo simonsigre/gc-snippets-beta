@@ -10,10 +10,11 @@ change the structure of this page, edit the generator.
 
 # GoCortex Snippets
 
-5 snippets published. Newest first.
+6 snippets published. Newest first.
 
 | Published (UTC) | Module | Scenario |
 | --- | --- | --- |
+| [2026-05-18 03:58 UTC](snippets/202605180358_GoCortexSnippet.json) | Cortex XDR | Rundll32 loading a DLL by export with an HTTP path |
 | [2026-05-18 03:47 UTC](snippets/202605180347_GoCortexSnippet.json) | Cortex XDR | Imagine an environment in which an operator wants to run PowerShell without leaving readable script text on the command line. They base64-encode the payload and pass it via `-EncodedCommand` (or its short forms `-enc`, `-e`). This is a long-standing living-off-the-land pattern that still appears through 2025-2026 in initial-access and lateral-movement chains. |
 | [2026-05-15 06:18 UTC](snippets/202605150618_GoCortexSnippet.json) | Cortex XSIAM | Attackers use compromised WordPress sites to show fake "Verify you are human" prompts. These prompts trick users into running a PowerShell command from their clipboard, which then downloads and executes Vidar Stealer in memory. |
 | [2026-05-11 05:22 UTC](snippets/202605110522_GoCortexSnippet.json) | Cortex XSIAM | Whilst monitoring a high-value workstation, a security analyst recognises an unusual process attempting to reach out to a suspicious public IP address. Rather than abruptly terminating the connection—which might alert a sophisticated adversary that their presence has been detected—the team chooses to quietly steer this traffic towards a secure internal sinkhole.<br><br>Upon investigation, the Analyst identifies additional IP addresses that need to be sinkholed and adds these to the array.<br> |
