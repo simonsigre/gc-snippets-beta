@@ -1,0 +1,22 @@
+{
+  "code_blocks": [
+    {
+      "code": "dataset = xdr_data\n| filter _time > to_timestamp(current_time() - 86400 * 30, \"SECONDS\")\n| filter event_type = ENUM.PROCESS and event_sub_type = ENUM.PROCESS_START\n| filter lowercase(action_process_image_name) in (\n    \"anydesk.exe\", \"atera.exe\", \"ateraagent.exe\", \"screenconnect.clientservice.exe\",\n    \"screenconnect.windowsclient.exe\", \"splashtop.exe\", \"splashtopstreamer.exe\",\n    \"teamviewer.exe\", \"rustdesk.exe\", \"netsupport.exe\", \"client32.exe\")\n| fields _time, agent_hostname, actor_effective_username,\n    causality_actor_process_image_name, action_process_image_command_line\n| limit 500",
+      "language": "xql"
+    }
+  ],
+  "created_at": "2026-05-18T09:04:00Z",
+  "id": "202605180904",
+  "module_slug": "cortex-xdr",
+  "product_module": "Cortex XDR",
+  "scenario": "Remote management and monitoring tool execution.",
+  "schema_version": 1,
+  "snippet": "Scenario: imagine an environment where an adversary deploys a legitimate\nremote management and monitoring (RMM) tool to maintain hands-on access. The tool is signed and operates \"as intended\", which is why it slips past\nsignature-based controls.\n\n- https://attack.mitre.org/techniques/T1219/\n- https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-025a\n\nLogic: a presence-and-absence hunt rather than a maliciousness verdict.\nCompare each hit against your sanctioned RMM list; anything outside it is\nworth a quick conversation with the host's owner.",
+  "tags": [
+    "alerts",
+    "detection",
+    "multi-tenant",
+    "xql"
+  ],
+  "time_to_implement": "5 minutes"
+}

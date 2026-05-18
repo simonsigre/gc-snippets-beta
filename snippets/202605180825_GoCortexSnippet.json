@@ -1,0 +1,21 @@
+{
+  "code_blocks": [
+    {
+      "code": "dataset = xdr_data\n| filter _time > to_timestamp(current_time() - 86400 * 7, \"SECONDS\")\n| filter event_type = ENUM.PROCESS and event_sub_type = ENUM.PROCESS_START\n| filter lowercase(action_process_image_name) = \"wmic.exe\"\n| filter lowercase(action_process_image_command_line) contains \"process\"\n    and lowercase(action_process_image_command_line) contains \"call\"\n    and lowercase(action_process_image_command_line) contains \"create\"\n| fields _time, agent_hostname, actor_effective_username,\n    causality_actor_process_image_name, action_process_image_command_line\n| limit 200",
+      "language": "xql"
+    }
+  ],
+  "created_at": "2026-05-18T08:25:00Z",
+  "id": "202605180825",
+  "module_slug": "cortex-xdr",
+  "product_module": "Cortex XDR",
+  "scenario": "Wmic remote process creation.",
+  "schema_version": 1,
+  "snippet": "Scenario: a scenario in which an attacker uses `wmic` to fan out command\nexecution to other hosts. The `process call create /node:` pattern is a\nclassic hands-on-keyboard lateral-movement shape that still surfaces in\nintrusion reports through 2025-2026, despite Microsoft deprecating the\nbinary.\n\n- https://attack.mitre.org/techniques/T1047/\n- https://lolbas-project.github.io/lolbas/Binaries/Wmic/\n\nLogic: the three keywords together (`process`, `call`, `create`) catch both\nlocal and `/node:` remote variants. Most legitimate admin scripts will have\na recognisable parent; ad-hoc operator activity will not.",
+  "tags": [
+    "alerts",
+    "detection",
+    "xql"
+  ],
+  "time_to_implement": "5 minutes"
+}

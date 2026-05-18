@@ -1,0 +1,22 @@
+{
+  "code_blocks": [
+    {
+      "code": "dataset = xdr_data\n| filter _time > to_timestamp(current_time() - 86400 * 14, \"SECONDS\")\n| filter event_type = ENUM.PROCESS and event_sub_type = ENUM.PROCESS_START\n| filter lowercase(action_process_image_name) = \"fsutil.exe\"\n| filter lowercase(action_process_image_command_line) contains \"usn\"\n    and lowercase(action_process_image_command_line) contains \"deletejournal\"\n| fields _time, agent_hostname, actor_effective_username,\n    causality_actor_process_image_name, action_process_image_command_line\n| limit 100",
+      "language": "xql"
+    }
+  ],
+  "created_at": "2026-05-18T08:59:00Z",
+  "id": "202605180859",
+  "module_slug": "cortex-xsiam",
+  "product_module": "Cortex XSIAM",
+  "scenario": "USN change journal deletion.",
+  "schema_version": 1,
+  "snippet": "Imagine an actor who has finished their hands-on activity and\nclears the NTFS USN change journal to frustrate forensic timelining. The\n`fsutil usn deletejournal` command is the standard means and is rarely run\nin normal operations.\n\n- https://attack.mitre.org/techniques/T1070/\n- https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil-usn\n\nLogic: very low base rate; almost any hit warrants triage. The `causality_actor_process_image_name` will usually be `cmd.exe` or `powershell.exe` for operator activity.",
+  "tags": [
+    "alerts",
+    "detection",
+    "multi-tenant",
+    "xql"
+  ],
+  "time_to_implement": "5 minutes"
+}

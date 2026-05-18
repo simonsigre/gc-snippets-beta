@@ -1,0 +1,22 @@
+{
+  "code_blocks": [
+    {
+      "code": "dataset = xdr_data\n| filter _time > to_timestamp(current_time() - 86400 * 30, \"SECONDS\")\n| filter event_type = ENUM.PROCESS and event_sub_type = ENUM.PROCESS_START\n| filter lowercase(action_process_image_name) = \"ntdsutil.exe\"\n| filter lowercase(action_process_image_command_line) contains \"ifm\"\n    and lowercase(action_process_image_command_line) contains \"create\"\n| fields _time, agent_hostname, actor_effective_username,\n    causality_actor_process_image_name, action_process_image_command_line\n| limit 100",
+      "language": "xql"
+    }
+  ],
+  "created_at": "2026-05-18T08:30:00Z",
+  "id": "202605180830",
+  "module_slug": "cortex-xdr",
+  "product_module": "Cortex XDR",
+  "scenario": "Ntdsutil IFM extraction of NTDS.dit.",
+  "schema_version": 1,
+  "snippet": "Scenario: a scenario where an actor with domain-controller access uses\n`ntdsutil` with the Install From Media (`ifm`) sub-command to create an\noffline copy of `NTDS.dit` for credential harvesting. Outside a planned DC\npromotion this is essentially never legitimate.\n\n- https://attack.mitre.org/techniques/T1003/003/\n- https://www.cisa.gov/news-events/cybersecurity-advisories/aa24-038a\n\nLogic: triggers on the documented `create full` / `create sysvol` IFM\nsub-commands. Each hit should produce a ticket; cross-reference the\nhostname against your known DC list and confirm with the AD team.",
+  "tags": [
+    "alerts",
+    "detection",
+    "multi-tenant",
+    "xql"
+  ],
+  "time_to_implement": "5 minutes"
+}

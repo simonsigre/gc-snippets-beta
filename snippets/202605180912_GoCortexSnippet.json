@@ -1,0 +1,22 @@
+{
+  "code_blocks": [
+    {
+      "code": "dataset = xdr_data\n| filter _time > to_timestamp(current_time() - 86400 * 7, \"SECONDS\")\n| filter event_type = ENUM.PROCESS and event_sub_type = ENUM.PROCESS_START\n| filter lowercase(actor_process_image_name) in (\n    \"winword.exe\", \"excel.exe\", \"powerpnt.exe\", \"outlook.exe\", \"msaccess.exe\", \"visio.exe\")\n| filter lowercase(action_process_image_name) in (\n    \"cmd.exe\", \"powershell.exe\", \"pwsh.exe\", \"wscript.exe\", \"cscript.exe\",\n    \"mshta.exe\", \"rundll32.exe\", \"regsvr32.exe\", \"bitsadmin.exe\", \"certutil.exe\")\n| fields _time, agent_hostname, actor_effective_username,\n    actor_process_image_name, action_process_image_name,\n    action_process_image_command_line\n| limit 200",
+      "language": "xql"
+    }
+  ],
+  "created_at": "2026-05-18T09:12:00Z",
+  "id": "202605180912",
+  "module_slug": "cortex-xdr",
+  "product_module": "Cortex XDR",
+  "scenario": "Office application spawning a script host or shell.",
+  "schema_version": 1,
+  "snippet": "Scenario: a macro-enabled or template-injected document\ncauses an Office process to start a script host or command shell. Even with modern Office hardening, this remains a dependable signal for tracking phishing payloads into 2025-2026.\n\n- https://attack.mitre.org/techniques/T1566/001/\n- https://www.ncsc.gov.uk/guidance/phishing\\\n\nLogic: the classic parent-child filter. Adjust the parent list if you have\nin-house Office add-ins that legitimately shell out.",
+  "tags": [
+    "alerts",
+    "detection",
+    "multi-tenant",
+    "xql"
+  ],
+  "time_to_implement": "5 minutes"
+}

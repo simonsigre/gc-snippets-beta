@@ -1,0 +1,22 @@
+{
+  "code_blocks": [
+    {
+      "code": "dataset = xdr_data\n| filter _time > to_timestamp(current_time() - 86400 * 14, \"SECONDS\")\n| filter event_type = ENUM.PROCESS and event_sub_type = ENUM.PROCESS_START\n| filter lowercase(action_process_image_name) in (\"wsl.exe\", \"wslhost.exe\")\n| filter lowercase(action_process_image_command_line) contains \"curl\"\n    or lowercase(action_process_image_command_line) contains \"wget\"\n    or lowercase(action_process_image_command_line) contains \"socat\"\n    or lowercase(action_process_image_command_line) contains \"/bin/bash -c\"\n| fields _time, agent_hostname, actor_effective_username,\n    causality_actor_process_image_name, action_process_image_command_line\n| limit 200",
+      "language": "xql"
+    }
+  ],
+  "created_at": "2026-05-18T09:13:00Z",
+  "id": "202605180913",
+  "module_slug": "cortex-xdr",
+  "product_module": "Cortex XDR",
+  "scenario": "WSL used to launch a Linux shell with network tooling.",
+  "schema_version": 1,
+  "snippet": "Scenario: imagine an operator using the Windows Subsystem for Linux to run\nfamiliar Linux network or transfer tools outside the visibility of\nWindows-only controls. WSL invocations with `curl`, `wget`, `bash`, or\n`socat` in their arguments are worth a glance.\n\n- https://attack.mitre.org/techniques/T1059/004/\n- https://learn.microsoft.com/en-us/windows/wsl/basic-commands\n\nLogic: not every WSL hit is bad; many developers live in WSL. The value is\nin the join of WSL plus network or transfer tooling, especially on non-developer hosts.",
+  "tags": [
+    "alerts",
+    "detection",
+    "multi-tenant",
+    "xql"
+  ],
+  "time_to_implement": "5 minutes"
+}

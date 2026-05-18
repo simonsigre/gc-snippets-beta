@@ -1,0 +1,22 @@
+{
+  "code_blocks": [
+    {
+      "code": "dataset = xdr_data\n| filter _time > to_timestamp(current_time() - 86400 * 30, \"SECONDS\")\n| filter event_type = ENUM.PROCESS and event_sub_type = ENUM.PROCESS_START\n| filter lowercase(action_process_image_name) in (\"powershell.exe\", \"pwsh.exe\")\n| filter lowercase(action_process_image_command_line) contains \"add-mppreference\"\n| filter lowercase(action_process_image_command_line) contains \"exclusionpath\"\n    or lowercase(action_process_image_command_line) contains \"exclusionprocess\"\n    or lowercase(action_process_image_command_line) contains \"exclusionextension\"\n| fields _time, agent_hostname, actor_effective_username,\n    causality_actor_process_image_name, action_process_image_command_line\n| limit 200",
+      "language": "xql"
+    }
+  ],
+  "created_at": "2026-05-18T09:15:00Z",
+  "id": "202605180915",
+  "module_slug": "cortex-xdr",
+  "product_module": "Cortex XDR",
+  "scenario": "Microsoft Defender exclusion added at the command line.",
+  "schema_version": 1,
+  "snippet": "Scenario: imagine an operator briefly disabling protection by adding a\nprocess, path, or extension exclusion to Microsoft Defender immediately\nbefore deploying their tooling. The `Add-MpPreference` cmdlet is the usual\nvehicle.\n\n- https://attack.mitre.org/techniques/T1562/001/\n- https://learn.microsoft.com/en-us/powershell/module/defender/add-mppreference\n\nLogic: legitimate exclusions are usually pushed via Group Policy or Intune, not typed at a shell. Each command-line addition is worth confirming with the host's owner and your endpoint team.\n",
+  "tags": [
+    "alerts",
+    "detection",
+    "multi-tenant",
+    "xql"
+  ],
+  "time_to_implement": "5 minutes"
+}

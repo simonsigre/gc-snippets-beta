@@ -1,0 +1,22 @@
+{
+  "code_blocks": [
+    {
+      "code": "dataset = xdr_data\n| filter _time > to_timestamp(current_time() - 86400 * 14, \"SECONDS\")\n| filter event_type = ENUM.PROCESS and event_sub_type = ENUM.PROCESS_START\n| filter lowercase(action_process_image_name) = \"msiexec.exe\"\n| filter lowercase(action_process_image_command_line) contains \"http://\"\n    or lowercase(action_process_image_command_line) contains \"https://\"\n| fields _time, agent_hostname, actor_effective_username,\n    causality_actor_process_image_name, action_process_image_command_line\n| limit 200",
+      "language": "xql"
+    }
+  ],
+  "created_at": "2026-05-18T09:14:00Z",
+  "id": "202605180914",
+  "module_slug": "cortex-xdr",
+  "product_module": "Cortex XDR",
+  "scenario": "Msiexec installing from a remote URL.",
+  "schema_version": 1,
+  "snippet": "Scenario: a scenario where an attacker delivers their payload as an MSI and asks `msiexec.exe` to fetch and install it directly from a web URL. Cleaner on disk than a downloader-plus-installer chain and increasingly common through 2025-2026.\n\n- https://attack.mitre.org/techniques/T1218/007/\n- https://lolbas-project.github.io/lolbas/Binaries/Msiexec/\n\nLogic: any HTTP(S) URL on an `msiexec` command line should be reviewed,\nsince modern software vendors push MSIs through managed deployment rather\nthan ad-hoc URLs.",
+  "tags": [
+    "alerts",
+    "detection",
+    "multi-tenant",
+    "xql"
+  ],
+  "time_to_implement": "5 minutes"
+}

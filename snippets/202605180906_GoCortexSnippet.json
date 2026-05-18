@@ -1,0 +1,22 @@
+{
+  "code_blocks": [
+    {
+      "code": "dataset = xdr_data\n| filter _time > to_timestamp(current_time() - 86400 * 7, \"SECONDS\")\n| filter event_type = ENUM.FILE\n| filter lowercase(action_file_path) contains \"\\\\user data\\\\default\\\\login data\"\n    or lowercase(action_file_path) contains \"\\\\user data\\\\default\\\\cookies\"\n    or lowercase(action_file_path) contains \"key4.db\"\n    or lowercase(action_file_path) contains \"logins.json\"\n| filter lowercase(actor_process_image_name) not in (\n    \"chrome.exe\", \"msedge.exe\", \"brave.exe\", \"firefox.exe\", \"opera.exe\")\n| fields _time, agent_hostname, actor_effective_username,\n    actor_process_image_name, action_file_path\n| limit 500",
+      "language": "xql"
+    }
+  ],
+  "created_at": "2026-05-18T09:06:00Z",
+  "id": "202605180906",
+  "module_slug": "cortex-xdr",
+  "product_module": "Cortex XDR",
+  "scenario": "Browser credential file access.",
+  "schema_version": 1,
+  "snippet": "Scenario: an info-stealer or hands-on operator reads the local browser credential vaults to harvest saved logins and session cookies. Info stealer ecosystems have continued to grow through 2025-2026 and the file paths are stable.\n\n- https://attack.mitre.org/techniques/T1555/003/\n- https://www.ncsc.gov.uk/collection/passwords\\\n\nLogic: focuses on reads of the canonical credential files by a process that is not itself the parent browser. Chrome, Edge, Firefox, and friends touch these paths constantly, hence the exclusion.",
+  "tags": [
+    "alerts",
+    "detection",
+    "multi-tenant",
+    "xql"
+  ],
+  "time_to_implement": "5 minutes"
+}

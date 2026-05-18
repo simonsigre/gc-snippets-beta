@@ -1,0 +1,22 @@
+{
+  "code_blocks": [
+    {
+      "code": "dataset = xdr_data\n| filter _time > to_timestamp(current_time() - 86400 * 14, \"SECONDS\")\n| filter event_type = ENUM.PROCESS and event_sub_type = ENUM.PROCESS_START\n| filter lowercase(action_process_image_name) = \"sc.exe\"\n| filter lowercase(action_process_image_command_line) contains \" create \"\n| filter lowercase(action_process_image_command_line) contains \"binpath=\"\n    and (lowercase(action_process_image_command_line) contains \"powershell\"\n        or lowercase(action_process_image_command_line) contains \"cmd.exe\"\n        or lowercase(action_process_image_command_line) contains \"wscript\"\n        or lowercase(action_process_image_command_line) contains \"cscript\"\n        or lowercase(action_process_image_command_line) contains \"rundll32\")\n| fields _time, agent_hostname, actor_effective_username,\n    causality_actor_process_image_name, action_process_image_command_line\n| limit 200",
+      "language": "xql"
+    }
+  ],
+  "created_at": "2026-05-18T09:11:00Z",
+  "id": "202605180911",
+  "module_slug": "cortex-xdr",
+  "product_module": "Cortex XDR",
+  "scenario": "Service created with sc.exe pointing at a script interpreter.",
+  "schema_version": 1,
+  "snippet": "Scenario: imagine an operator persisting (or moving laterally) by creating\na Windows service whose binary path is a script interpreter rather than a\nproper executable. The `binPath=` argument tells the story.\n\n- https://attack.mitre.org/techniques/T1543/003/\n- https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/sc-create\n\nLogic: legitimate vendor installers create services pointing at their own\nsigned binaries; an interpreter in `binPath=` is a strong indicator of\noperator-driven persistence.",
+  "tags": [
+    "alerts",
+    "detection",
+    "multi-tenant",
+    "xql"
+  ],
+  "time_to_implement": "5 minutes"
+}

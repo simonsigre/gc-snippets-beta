@@ -1,0 +1,22 @@
+{
+  "code_blocks": [
+    {
+      "code": "dataset = xdr_data\n| filter _time > to_timestamp(current_time() - 86400 * 30, \"SECONDS\")\n| filter event_type = ENUM.PROCESS and event_sub_type = ENUM.PROCESS_START\n| filter lowercase(action_process_image_name) = \"netsh.exe\"\n| filter lowercase(action_process_image_command_line) contains \"portproxy\"\n    and lowercase(action_process_image_command_line) contains \"add\"\n    and lowercase(action_process_image_command_line) contains \"v4tov4\"\n| fields _time, agent_hostname, actor_effective_username,\n    causality_actor_process_image_name, action_process_image_command_line\n| limit 100",
+      "language": "xql"
+    }
+  ],
+  "created_at": "2026-05-18T08:31:00Z",
+  "id": "202605180831",
+  "module_slug": "cortex-xsiam",
+  "product_module": "Cortex XSIAM",
+  "scenario": "Netsh portproxy pivot listener.",
+  "schema_version": 1,
+  "snippet": "Scenario: imagine an environment in which a compromised edge or jump host is being used as a TCP relay so the operator's true source address is hidden behind a victim IP. The hallmark is a `netsh interface portproxy add v4tov4` listener.\n\n- https://attack.mitre.org/techniques/T1090/001/\n- https://www.cisa.gov/news-events/cybersecurity-advisories/aa24-038a\n\nLogic: matches the exact `add v4tov4` form. The `connectaddress=` value in\nthe command line tells you where the relay points; investigate any value\noutside your management ranges.",
+  "tags": [
+    "alerts",
+    "detection",
+    "multi-tenant",
+    "xql"
+  ],
+  "time_to_implement": "5 minutes"
+}

@@ -1,0 +1,22 @@
+{
+  "code_blocks": [
+    {
+      "code": "dataset = xdr_data\n| filter _time > to_timestamp(current_time() - 86400 * 14, \"SECONDS\")\n| filter event_type = ENUM.PROCESS and event_sub_type = ENUM.PROCESS_START\n| filter lowercase(action_process_image_name) = \"bitsadmin.exe\"\n| filter lowercase(action_process_image_command_line) contains \"/transfer\"\n    or lowercase(action_process_image_command_line) contains \"/addfile\"\n    or lowercase(action_process_image_command_line) contains \"/create\"\n| fields _time, agent_hostname, actor_effective_username,\n    causality_actor_process_image_name, action_process_image_command_line\n| limit 200",
+      "language": "xql"
+    }
+  ],
+  "created_at": "2026-05-18T08:35:00Z",
+  "id": "202605180835",
+  "module_slug": "cortex-xdr",
+  "product_module": "Cortex XDR",
+  "scenario": "Bitsadmin file transfer.",
+  "schema_version": 1,
+  "snippet": "Scenario: imagine an operator using the Background Intelligent Transfer\nService (`bitsadmin.exe`) to stage tooling over HTTP. Like certutil, this\nbinary is signed, on-disk, and unlikely to be blocked, which keeps it in\nrotation through 2025-2026.\n\n- https://attack.mitre.org/techniques/T1197/\n- https://lolbas-project.github.io/lolbas/Binaries/Bitsadmin/\n\nLogic: legitimate Windows Update activity uses BITS but not the `bitsadmin` CLI. Operator-driven transfers stand out because they almost always invoke the `/transfer` verb with a URL.",
+  "tags": [
+    "alerts",
+    "detection",
+    "multi-tenant",
+    "xql"
+  ],
+  "time_to_implement": "5 minutes"
+}

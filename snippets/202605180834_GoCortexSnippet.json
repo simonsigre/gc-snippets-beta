@@ -1,0 +1,22 @@
+{
+  "code_blocks": [
+    {
+      "code": "dataset = xdr_data\n| filter _time > to_timestamp(current_time() - 86400 * 14, \"SECONDS\")\n| filter event_type = ENUM.PROCESS and event_sub_type = ENUM.PROCESS_START\n| filter lowercase(action_process_image_name) = \"certutil.exe\"\n| filter lowercase(action_process_image_command_line) contains \"-urlcache\"\n    or lowercase(action_process_image_command_line) contains \"-verifyctl\"\n    or lowercase(action_process_image_command_line) contains \"http\"\n| fields _time, agent_hostname, actor_effective_username,\n    causality_actor_process_image_name, action_process_image_command_line\n| limit 200",
+      "language": "xql"
+    }
+  ],
+  "created_at": "2026-05-18T08:34:00Z",
+  "id": "202605180834",
+  "module_slug": "cortex-xdr",
+  "product_module": "Cortex XDR",
+  "scenario": "Certutil download via URL cache.",
+  "schema_version": 1,
+  "snippet": "Scenario: a scenario where `certutil.exe` is repurposed as a download tool\nvia `-urlcache -split -f`. It remains a popular LOLBin downloader because it ships with Windows and is rarely blocked.\n\n- https://attack.mitre.org/techniques/T1105/\n- https://lolbas-project.github.io/lolbas/Binaries/Certutil/\n\nLogic: triggers on the documented downloader flags and on any plain HTTP\nreference in a certutil command line. Pair with `action_external_hostname`\nto see what was fetched.",
+  "tags": [
+    "alerts",
+    "detection",
+    "multi-tenant",
+    "xql"
+  ],
+  "time_to_implement": "5 minutes"
+}

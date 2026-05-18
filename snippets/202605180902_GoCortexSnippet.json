@@ -1,0 +1,22 @@
+{
+  "code_blocks": [
+    {
+      "code": "dataset = xdr_data\n| filter _time > to_timestamp(current_time() - 86400 * 14, \"SECONDS\")\n| filter event_type = ENUM.PROCESS and event_sub_type = ENUM.PROCESS_START\n| filter agent_os_type = ENUM.AGENT_OS_WINDOWS\n| filter lowercase(action_process_image_command_line) contains \"esxcli\"\n    or lowercase(action_process_image_command_line) contains \"vim-cmd\"\n    or lowercase(action_process_image_command_line) contains \"vmkfstools\"\n    or lowercase(action_process_image_command_line) contains \"/vmfs/volumes/\"\n| fields _time, agent_hostname, actor_effective_username,\n    causality_actor_process_image_name, action_process_image_command_line\n| limit 200",
+      "language": "xql"
+    }
+  ],
+  "created_at": "2026-05-18T09:02:00Z",
+  "id": "202605180902",
+  "module_slug": "cortex-xdr",
+  "product_module": "Cortex XDR",
+  "scenario": "ESXi-targeted command strings on a Windows host.",
+  "schema_version": 1,
+  "snippet": "Scenario: a Windows beachhead is used to drive administrative tooling against a VMware ESXi estate before the operator pivots onto the hypervisors themselves. ESXi-specific command strings appearing in process command lines on Windows endpoints are an early warning.\n\n- https://attack.mitre.org/techniques/T1486/\n- https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-039a\n\nLogic: looks for ESXi-only tooling or path fragments in command lines on\nWindows hosts. SSH clients (`plink.exe`, `ssh.exe`) carrying these strings\nas arguments are particularly worth pivoting on.",
+  "tags": [
+    "alerts",
+    "detection",
+    "multi-tenant",
+    "xql"
+  ],
+  "time_to_implement": "5 minutes"
+}
