@@ -24,15 +24,14 @@ user-writable directory, together with an export name after the comma.
 Logic: focuses on the LOLBin pattern where `rundll32` is asked to load a DLL from somewhere it ought never to load one (web URL or remote share). Triage by causality parent and by the DLL path on the command line.</description>
     </item>
     <item>
-      <title>[Cortex XDR] Imagine an environment in which an operator wants to run PowerShell without leaving readable script text on the command line. They base64-encode the payload and pass it via `-EncodedCommand` (or its short forms `-enc`, `-e`). This is a long-standing living-off-the-land pattern that still appears through 2025-2026 in initial-access and lateral-movement chains.</title>
+      <title>[Cortex XDR] PowerShell encoded command-line</title>
       <link>https://snippets.gocortex.io/module/cortex-xdr</link>
       <guid isPermaLink="false">gocortex-snippet-202605180347</guid>
       <pubDate>Mon, 18 May 2026 03:47:00 +0000</pubDate>
       <category>Cortex XDR</category>
-      <description>Imagine an environment in which an operator wants to run PowerShell without leaving readable script text on the command line. They base64-encode the payload and pass it via `-EncodedCommand` (or its short forms `-enc`, `-e`). This is a long-standing living-off-the-land pattern that still appears through 2025-2026 in initial-access and lateral-movement chains.
+      <description>PowerShell encoded command-line
 
-- https://attack.mitre.org/techniques/T1059/001/
-- https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_powershell_exe</description>
+ Scenario: imagine an environment in which an operator wants to run PowerShell without leaving readable script text on the command line. They base64-encode the payload and pass it via `-EncodedCommand` (or its short forms `-enc`, `-e`). This is a long-standing living-off-the-land pattern that still appears through 2025-2026 in initial-access and lateral-movement chains. - https://attack.mitre.org/techniques/T1059/001/ - https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_powershell_exe</description>
     </item>
     <item>
       <title>[Cortex XSIAM] Attackers use compromised WordPress sites to show fake &quot;Verify you are human&quot; prompts. These prompts trick users into running a PowerShell command from their clipboard, which then downloads and executes Vidar Stealer in memory.</title>
