@@ -1,0 +1,21 @@
+{
+  "code_blocks": [
+    {
+      "code": "dataset = xdr_data\n| filter _time > to_timestamp(current_time() - 86400 * 7, \"SECONDS\")\n| filter event_type = ENUM.PROCESS and event_sub_type = ENUM.PROCESS_START\n| filter lowercase(action_process_image_name) = \"rundll32.exe\"\n| filter lowercase(action_process_image_command_line) contains \"http://\"\n    or lowercase(action_process_image_command_line) contains \"https://\"\n    or lowercase(action_process_image_command_line) contains \"\\\\\\\\\"\n| fields _time, agent_hostname, actor_effective_username,\n    causality_actor_process_image_name, action_process_image_command_line\n| limit 200",
+      "language": "xql"
+    }
+  ],
+  "created_at": "2026-05-18T03:58:00Z",
+  "id": "202605180358",
+  "module_slug": "cortex-xdr",
+  "product_module": "Cortex XDR",
+  "scenario": "Rundll32 loading a DLL by export with an HTTP path",
+  "schema_version": 1,
+  "snippet": "Scenario: a scenario where an adversary uses `rundll32.exe` to execute code inside a benign-looking system process. A reliable tell is a command line that references an HTTP(S) URL, a UNC path, or a freshly written DLL in a\nuser-writable directory, together with an export name after the comma.\n\n- https://attack.mitre.org/techniques/T1218/011/\n- https://lolbas-project.github.io/lolbas/Binaries/Rundll32/\n\nLogic: focuses on the LOLBin pattern where `rundll32` is asked to load a DLL from somewhere it ought never to load one (web URL or remote share). Triage by causality parent and by the DLL path on the command line.",
+  "tags": [
+    "detection",
+    "multi-tenant",
+    "xql"
+  ],
+  "time_to_implement": "5 minutes"
+}
