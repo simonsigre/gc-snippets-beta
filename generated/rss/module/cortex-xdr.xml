@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GoCortexIO Snippets - Cortex XDR</title>
+    <link>https://snippets.gocortex.io/</link>
+    <description>Short, actionable Cortex tips, published as they ship. (Cortex XDR only.)</description>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 18 May 2026 03:47:00 +0000</lastBuildDate>
+    <atom:link href="https://snippets.gocortex.io/module/cortex-xdr.rss" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Cortex XDR] Imagine an environment in which an operator wants to run PowerShell without leaving readable script text on the command line. They base64-encode the payload and pass it via `-EncodedCommand` (or its short forms `-enc`, `-e`). This is a long-standing living-off-the-land pattern that still appears through 2025-2026 in initial-access and lateral-movement chains.</title>
+      <link>https://snippets.gocortex.io/module/cortex-xdr</link>
+      <guid isPermaLink="false">gocortex-snippet-202605180347</guid>
+      <pubDate>Mon, 18 May 2026 03:47:00 +0000</pubDate>
+      <category>Cortex XDR</category>
+      <description>Imagine an environment in which an operator wants to run PowerShell without leaving readable script text on the command line. They base64-encode the payload and pass it via `-EncodedCommand` (or its short forms `-enc`, `-e`). This is a long-standing living-off-the-land pattern that still appears through 2025-2026 in initial-access and lateral-movement chains.
+
+- https://attack.mitre.org/techniques/T1059/001/
+- https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_powershell_exe</description>
+    </item>
+  </channel>
+</rss>

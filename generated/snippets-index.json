@@ -1,5 +1,14 @@
 [
   {
+    "created_at": "2026-05-18T03:47:00Z",
+    "file": "202605180347_GoCortexSnippet.json",
+    "id": "202605180347",
+    "module": "Cortex XDR",
+    "module_slug": "cortex-xdr",
+    "scenario": "Imagine an environment in which an operator wants to run PowerShell without leaving readable script text on the command line. They base64-encode the payload and pass it via `-EncodedCommand` (or its short forms `-enc`, `-e`). This is a long-standing living-off-the-land pattern that still appears through 2025-2026 in initial-access and lateral-movement chains.",
+    "tags": []
+  },
+  {
     "created_at": "2026-05-15T06:18:00Z",
     "file": "202605150618_GoCortexSnippet.json",
     "id": "202605150618",
