@@ -5,8 +5,277 @@
     <link>https://snippets.gocortex.io/</link>
     <description>Short, actionable Cortex tips, published as they ship. (Cortex XDR only.)</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 18 May 2026 05:11:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 18 May 2026 09:15:00 +0000</lastBuildDate>
     <atom:link href="https://snippets.gocortex.io/module/cortex-xdr.rss" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Cortex XDR] Microsoft Defender exclusion added at the command line.</title>
+      <link>https://snippets.gocortex.io/module/cortex-xdr</link>
+      <guid isPermaLink="false">gocortex-snippet-202605180915</guid>
+      <pubDate>Mon, 18 May 2026 09:15:00 +0000</pubDate>
+      <category>Cortex XDR</category>
+      <description>Microsoft Defender exclusion added at the command line.
+
+Scenario: imagine an operator briefly disabling protection by adding a
+process, path, or extension exclusion to Microsoft Defender immediately
+before deploying their tooling. The `Add-MpPreference` cmdlet is the usual
+vehicle.
+
+- https://attack.mitre.org/techniques/T1562/001/
+- https://learn.microsoft.com/en-us/powershell/module/defender/add-mppreference
+
+Logic: legitimate exclusions are usually pushed via Group Policy or Intune, not typed at a shell. Each command-line addition is worth confirming with the host&apos;s owner and your endpoint team.
+</description>
+    </item>
+    <item>
+      <title>[Cortex XDR] Msiexec installing from a remote URL.</title>
+      <link>https://snippets.gocortex.io/module/cortex-xdr</link>
+      <guid isPermaLink="false">gocortex-snippet-202605180914</guid>
+      <pubDate>Mon, 18 May 2026 09:14:00 +0000</pubDate>
+      <category>Cortex XDR</category>
+      <description>Msiexec installing from a remote URL.
+
+Scenario: a scenario where an attacker delivers their payload as an MSI and asks `msiexec.exe` to fetch and install it directly from a web URL. Cleaner on disk than a downloader-plus-installer chain and increasingly common through 2025-2026.
+
+- https://attack.mitre.org/techniques/T1218/007/
+- https://lolbas-project.github.io/lolbas/Binaries/Msiexec/
+
+Logic: any HTTP(S) URL on an `msiexec` command line should be reviewed,
+since modern software vendors push MSIs through managed deployment rather
+than ad-hoc URLs.</description>
+    </item>
+    <item>
+      <title>[Cortex XDR] WSL used to launch a Linux shell with network tooling.</title>
+      <link>https://snippets.gocortex.io/module/cortex-xdr</link>
+      <guid isPermaLink="false">gocortex-snippet-202605180913</guid>
+      <pubDate>Mon, 18 May 2026 09:13:00 +0000</pubDate>
+      <category>Cortex XDR</category>
+      <description>WSL used to launch a Linux shell with network tooling.
+
+Scenario: imagine an operator using the Windows Subsystem for Linux to run
+familiar Linux network or transfer tools outside the visibility of
+Windows-only controls. WSL invocations with `curl`, `wget`, `bash`, or
+`socat` in their arguments are worth a glance.
+
+- https://attack.mitre.org/techniques/T1059/004/
+- https://learn.microsoft.com/en-us/windows/wsl/basic-commands
+
+Logic: not every WSL hit is bad; many developers live in WSL. The value is
+in the join of WSL plus network or transfer tooling, especially on non-developer hosts.</description>
+    </item>
+    <item>
+      <title>[Cortex XDR] Office application spawning a script host or shell.</title>
+      <link>https://snippets.gocortex.io/module/cortex-xdr</link>
+      <guid isPermaLink="false">gocortex-snippet-202605180912</guid>
+      <pubDate>Mon, 18 May 2026 09:12:00 +0000</pubDate>
+      <category>Cortex XDR</category>
+      <description>Office application spawning a script host or shell.
+
+Scenario: a macro-enabled or template-injected document
+causes an Office process to start a script host or command shell. Even with modern Office hardening, this remains a dependable signal for tracking phishing payloads into 2025-2026.
+
+- https://attack.mitre.org/techniques/T1566/001/
+- https://www.ncsc.gov.uk/guidance/phishing\
+
+Logic: the classic parent-child filter. Adjust the parent list if you have
+in-house Office add-ins that legitimately shell out.</description>
+    </item>
+    <item>
+      <title>[Cortex XDR] Service created with sc.exe pointing at a script interpreter.</title>
+      <link>https://snippets.gocortex.io/module/cortex-xdr</link>
+      <guid isPermaLink="false">gocortex-snippet-202605180911</guid>
+      <pubDate>Mon, 18 May 2026 09:11:00 +0000</pubDate>
+      <category>Cortex XDR</category>
+      <description>Service created with sc.exe pointing at a script interpreter.
+
+Scenario: imagine an operator persisting (or moving laterally) by creating
+a Windows service whose binary path is a script interpreter rather than a
+proper executable. The `binPath=` argument tells the story.
+
+- https://attack.mitre.org/techniques/T1543/003/
+- https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/sc-create
+
+Logic: legitimate vendor installers create services pointing at their own
+signed binaries; an interpreter in `binPath=` is a strong indicator of
+operator-driven persistence.</description>
+    </item>
+    <item>
+      <title>[Cortex XDR] Scheduled task created by a script-host parent.</title>
+      <link>https://snippets.gocortex.io/module/cortex-xdr</link>
+      <guid isPermaLink="false">gocortex-snippet-202605180910</guid>
+      <pubDate>Mon, 18 May 2026 09:10:00 +0000</pubDate>
+      <category>Cortex XDR</category>
+      <description>Scheduled task created by a script-host parent.
+
+Scenario: a phishing payload or web-shell drops a scheduled task for persistence. The unusual part is rarely the task itself but its parent: a script host (`wscript`, `cscript`, `powershell`, `mshta`) launching `schtasks /create` is a notable shape.
+
+- https://attack.mitre.org/techniques/T1053/005/
+- https://learn.microsoft.com/en-us/windows/win32/taskschd/task-scheduler-start-page
+
+Logic: combines the action (task creation) with a parent that should rarely ever schedule tasks. Tune the parent list to your environment.</description>
+    </item>
+    <item>
+      <title>[Cortex XDR] Run key persistence written via reg.exe.</title>
+      <link>https://snippets.gocortex.io/module/cortex-xdr</link>
+      <guid isPermaLink="false">gocortex-snippet-202605180909</guid>
+      <pubDate>Mon, 18 May 2026 09:09:00 +0000</pubDate>
+      <category>Cortex XDR</category>
+      <description>Run key persistence written via reg.exe.
+
+Scenario: imagine an attacker establishing user-mode persistence by writing a value under the `Run` or `RunOnce` registry keys with `reg.exe add`. Trivial to deploy, trivial to spot if you are looking.
+
+- https://attack.mitre.org/techniques/T1547/001/
+- https://learn.microsoft.com/en-us/windows/win32/setupapi/run-and-runonce-registry-keys
+
+Logic: spotted via the literal Run/RunOnce key path on the command line.
+For full coverage pair this with a registry-event hunt; this snippet is the quick check that does not require deeper telemetry plumbing.</description>
+    </item>
+    <item>
+      <title>[Cortex XDR] Browser credential file access.</title>
+      <link>https://snippets.gocortex.io/module/cortex-xdr</link>
+      <guid isPermaLink="false">gocortex-snippet-202605180906</guid>
+      <pubDate>Mon, 18 May 2026 09:06:00 +0000</pubDate>
+      <category>Cortex XDR</category>
+      <description>Browser credential file access.
+
+Scenario: an info-stealer or hands-on operator reads the local browser credential vaults to harvest saved logins and session cookies. Info stealer ecosystems have continued to grow through 2025-2026 and the file paths are stable.
+
+- https://attack.mitre.org/techniques/T1555/003/
+- https://www.ncsc.gov.uk/collection/passwords\
+
+Logic: focuses on reads of the canonical credential files by a process that is not itself the parent browser. Chrome, Edge, Firefox, and friends touch these paths constantly, hence the exclusion.</description>
+    </item>
+    <item>
+      <title>[Cortex XDR] Remote management and monitoring tool execution.</title>
+      <link>https://snippets.gocortex.io/module/cortex-xdr</link>
+      <guid isPermaLink="false">gocortex-snippet-202605180904</guid>
+      <pubDate>Mon, 18 May 2026 09:04:00 +0000</pubDate>
+      <category>Cortex XDR</category>
+      <description>Remote management and monitoring tool execution.
+
+Scenario: imagine an environment where an adversary deploys a legitimate
+remote management and monitoring (RMM) tool to maintain hands-on access. The tool is signed and operates &quot;as intended&quot;, which is why it slips past
+signature-based controls.
+
+- https://attack.mitre.org/techniques/T1219/
+- https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-025a
+
+Logic: a presence-and-absence hunt rather than a maliciousness verdict.
+Compare each hit against your sanctioned RMM list; anything outside it is
+worth a quick conversation with the host&apos;s owner.</description>
+    </item>
+    <item>
+      <title>[Cortex XDR] ESXi-targeted command strings on a Windows host.</title>
+      <link>https://snippets.gocortex.io/module/cortex-xdr</link>
+      <guid isPermaLink="false">gocortex-snippet-202605180902</guid>
+      <pubDate>Mon, 18 May 2026 09:02:00 +0000</pubDate>
+      <category>Cortex XDR</category>
+      <description>ESXi-targeted command strings on a Windows host.
+
+Scenario: a Windows beachhead is used to drive administrative tooling against a VMware ESXi estate before the operator pivots onto the hypervisors themselves. ESXi-specific command strings appearing in process command lines on Windows endpoints are an early warning.
+
+- https://attack.mitre.org/techniques/T1486/
+- https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-039a
+
+Logic: looks for ESXi-only tooling or path fragments in command lines on
+Windows hosts. SSH clients (`plink.exe`, `ssh.exe`) carrying these strings
+as arguments are particularly worth pivoting on.</description>
+    </item>
+    <item>
+      <title>[Cortex XDR] Volume Shadow Copy deletion.</title>
+      <link>https://snippets.gocortex.io/module/cortex-xdr</link>
+      <guid isPermaLink="false">gocortex-snippet-202605180836</guid>
+      <pubDate>Mon, 18 May 2026 08:36:00 +0000</pubDate>
+      <category>Cortex XDR</category>
+      <description>Volume Shadow Copy deletion.
+
+Scenario: a scenario immediately preceding a ransomware encryption stage,
+where shadow copies are wiped so users cannot restore files locally. The
+`vssadmin delete shadows /all /quiet` pattern is durable and remains one of
+the most reliable pre-encryption tells.
+
+- https://attack.mitre.org/techniques/T1490/
+- https://www.cisa.gov/stopransomware
+
+Logic: covers the three usual binaries used for backup destruction
+(`vssadmin`, `wmic shadowcopy`, `wbadmin delete catalog`). Any single hit on a workstation should be treated as a likely ransomware precursor.</description>
+    </item>
+    <item>
+      <title>[Cortex XDR] Bitsadmin file transfer.</title>
+      <link>https://snippets.gocortex.io/module/cortex-xdr</link>
+      <guid isPermaLink="false">gocortex-snippet-202605180835</guid>
+      <pubDate>Mon, 18 May 2026 08:35:00 +0000</pubDate>
+      <category>Cortex XDR</category>
+      <description>Bitsadmin file transfer.
+
+Scenario: imagine an operator using the Background Intelligent Transfer
+Service (`bitsadmin.exe`) to stage tooling over HTTP. Like certutil, this
+binary is signed, on-disk, and unlikely to be blocked, which keeps it in
+rotation through 2025-2026.
+
+- https://attack.mitre.org/techniques/T1197/
+- https://lolbas-project.github.io/lolbas/Binaries/Bitsadmin/
+
+Logic: legitimate Windows Update activity uses BITS but not the `bitsadmin` CLI. Operator-driven transfers stand out because they almost always invoke the `/transfer` verb with a URL.</description>
+    </item>
+    <item>
+      <title>[Cortex XDR] Certutil download via URL cache.</title>
+      <link>https://snippets.gocortex.io/module/cortex-xdr</link>
+      <guid isPermaLink="false">gocortex-snippet-202605180834</guid>
+      <pubDate>Mon, 18 May 2026 08:34:00 +0000</pubDate>
+      <category>Cortex XDR</category>
+      <description>Certutil download via URL cache.
+
+Scenario: a scenario where `certutil.exe` is repurposed as a download tool
+via `-urlcache -split -f`. It remains a popular LOLBin downloader because it ships with Windows and is rarely blocked.
+
+- https://attack.mitre.org/techniques/T1105/
+- https://lolbas-project.github.io/lolbas/Binaries/Certutil/
+
+Logic: triggers on the documented downloader flags and on any plain HTTP
+reference in a certutil command line. Pair with `action_external_hostname`
+to see what was fetched.</description>
+    </item>
+    <item>
+      <title>[Cortex XDR] Ntdsutil IFM extraction of NTDS.dit.</title>
+      <link>https://snippets.gocortex.io/module/cortex-xdr</link>
+      <guid isPermaLink="false">gocortex-snippet-202605180830</guid>
+      <pubDate>Mon, 18 May 2026 08:30:00 +0000</pubDate>
+      <category>Cortex XDR</category>
+      <description>Ntdsutil IFM extraction of NTDS.dit.
+
+Scenario: a scenario where an actor with domain-controller access uses
+`ntdsutil` with the Install From Media (`ifm`) sub-command to create an
+offline copy of `NTDS.dit` for credential harvesting. Outside a planned DC
+promotion this is essentially never legitimate.
+
+- https://attack.mitre.org/techniques/T1003/003/
+- https://www.cisa.gov/news-events/cybersecurity-advisories/aa24-038a
+
+Logic: triggers on the documented `create full` / `create sysvol` IFM
+sub-commands. Each hit should produce a ticket; cross-reference the
+hostname against your known DC list and confirm with the AD team.</description>
+    </item>
+    <item>
+      <title>[Cortex XDR] Wmic remote process creation.</title>
+      <link>https://snippets.gocortex.io/module/cortex-xdr</link>
+      <guid isPermaLink="false">gocortex-snippet-202605180825</guid>
+      <pubDate>Mon, 18 May 2026 08:25:00 +0000</pubDate>
+      <category>Cortex XDR</category>
+      <description>Wmic remote process creation.
+
+Scenario: a scenario in which an attacker uses `wmic` to fan out command
+execution to other hosts. The `process call create /node:` pattern is a
+classic hands-on-keyboard lateral-movement shape that still surfaces in
+intrusion reports through 2025-2026, despite Microsoft deprecating the
+binary.
+
+- https://attack.mitre.org/techniques/T1047/
+- https://lolbas-project.github.io/lolbas/Binaries/Wmic/
+
+Logic: the three keywords together (`process`, `call`, `create`) catch both
+local and `/node:` remote variants. Most legitimate admin scripts will have
+a recognisable parent; ad-hoc operator activity will not.</description>
+    </item>
     <item>
       <title>[Cortex XDR] Mshta fetching a remote HTA</title>
       <link>https://snippets.gocortex.io/module/cortex-xdr</link>

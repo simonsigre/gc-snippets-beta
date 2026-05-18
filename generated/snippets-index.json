@@ -1,5 +1,242 @@
 [
   {
+    "created_at": "2026-05-18T09:15:00Z",
+    "file": "202605180915_GoCortexSnippet.json",
+    "id": "202605180915",
+    "module": "Cortex XDR",
+    "module_slug": "cortex-xdr",
+    "scenario": "Microsoft Defender exclusion added at the command line.",
+    "tags": [
+      "alerts",
+      "detection",
+      "multi-tenant",
+      "xql"
+    ]
+  },
+  {
+    "created_at": "2026-05-18T09:14:00Z",
+    "file": "202605180914_GoCortexSnippet.json",
+    "id": "202605180914",
+    "module": "Cortex XDR",
+    "module_slug": "cortex-xdr",
+    "scenario": "Msiexec installing from a remote URL.",
+    "tags": [
+      "alerts",
+      "detection",
+      "multi-tenant",
+      "xql"
+    ]
+  },
+  {
+    "created_at": "2026-05-18T09:13:00Z",
+    "file": "202605180913_GoCortexSnippet.json",
+    "id": "202605180913",
+    "module": "Cortex XDR",
+    "module_slug": "cortex-xdr",
+    "scenario": "WSL used to launch a Linux shell with network tooling.",
+    "tags": [
+      "alerts",
+      "detection",
+      "multi-tenant",
+      "xql"
+    ]
+  },
+  {
+    "created_at": "2026-05-18T09:12:00Z",
+    "file": "202605180912_GoCortexSnippet.json",
+    "id": "202605180912",
+    "module": "Cortex XDR",
+    "module_slug": "cortex-xdr",
+    "scenario": "Office application spawning a script host or shell.",
+    "tags": [
+      "alerts",
+      "detection",
+      "multi-tenant",
+      "xql"
+    ]
+  },
+  {
+    "created_at": "2026-05-18T09:11:00Z",
+    "file": "202605180911_GoCortexSnippet.json",
+    "id": "202605180911",
+    "module": "Cortex XDR",
+    "module_slug": "cortex-xdr",
+    "scenario": "Service created with sc.exe pointing at a script interpreter.",
+    "tags": [
+      "alerts",
+      "detection",
+      "multi-tenant",
+      "xql"
+    ]
+  },
+  {
+    "created_at": "2026-05-18T09:10:00Z",
+    "file": "202605180910_GoCortexSnippet.json",
+    "id": "202605180910",
+    "module": "Cortex XDR",
+    "module_slug": "cortex-xdr",
+    "scenario": "Scheduled task created by a script-host parent.",
+    "tags": [
+      "alerts",
+      "detection",
+      "multi-tenant",
+      "xql"
+    ]
+  },
+  {
+    "created_at": "2026-05-18T09:09:00Z",
+    "file": "202605180909_GoCortexSnippet.json",
+    "id": "202605180909",
+    "module": "Cortex XDR",
+    "module_slug": "cortex-xdr",
+    "scenario": "Run key persistence written via reg.exe.",
+    "tags": [
+      "alerts",
+      "detection",
+      "multi-tenant",
+      "xql"
+    ]
+  },
+  {
+    "created_at": "2026-05-18T09:06:00Z",
+    "file": "202605180906_GoCortexSnippet.json",
+    "id": "202605180906",
+    "module": "Cortex XDR",
+    "module_slug": "cortex-xdr",
+    "scenario": "Browser credential file access.",
+    "tags": [
+      "alerts",
+      "detection",
+      "multi-tenant",
+      "xql"
+    ]
+  },
+  {
+    "created_at": "2026-05-18T09:04:00Z",
+    "file": "202605180904_GoCortexSnippet.json",
+    "id": "202605180904",
+    "module": "Cortex XDR",
+    "module_slug": "cortex-xdr",
+    "scenario": "Remote management and monitoring tool execution.",
+    "tags": [
+      "alerts",
+      "detection",
+      "multi-tenant",
+      "xql"
+    ]
+  },
+  {
+    "created_at": "2026-05-18T09:02:00Z",
+    "file": "202605180902_GoCortexSnippet.json",
+    "id": "202605180902",
+    "module": "Cortex XDR",
+    "module_slug": "cortex-xdr",
+    "scenario": "ESXi-targeted command strings on a Windows host.",
+    "tags": [
+      "alerts",
+      "detection",
+      "multi-tenant",
+      "xql"
+    ]
+  },
+  {
+    "created_at": "2026-05-18T08:59:00Z",
+    "file": "202605180859_GoCortexSnippet.json",
+    "id": "202605180859",
+    "module": "Cortex XSIAM",
+    "module_slug": "cortex-xsiam",
+    "scenario": "USN change journal deletion.",
+    "tags": [
+      "alerts",
+      "detection",
+      "multi-tenant",
+      "xql"
+    ]
+  },
+  {
+    "created_at": "2026-05-18T08:36:00Z",
+    "file": "202605180836_GoCortexSnippet.json",
+    "id": "202605180836",
+    "module": "Cortex XDR",
+    "module_slug": "cortex-xdr",
+    "scenario": "Volume Shadow Copy deletion.",
+    "tags": [
+      "alerts",
+      "detection",
+      "multi-tenant",
+      "xql"
+    ]
+  },
+  {
+    "created_at": "2026-05-18T08:35:00Z",
+    "file": "202605180835_GoCortexSnippet.json",
+    "id": "202605180835",
+    "module": "Cortex XDR",
+    "module_slug": "cortex-xdr",
+    "scenario": "Bitsadmin file transfer.",
+    "tags": [
+      "alerts",
+      "detection",
+      "multi-tenant",
+      "xql"
+    ]
+  },
+  {
+    "created_at": "2026-05-18T08:34:00Z",
+    "file": "202605180834_GoCortexSnippet.json",
+    "id": "202605180834",
+    "module": "Cortex XDR",
+    "module_slug": "cortex-xdr",
+    "scenario": "Certutil download via URL cache.",
+    "tags": [
+      "alerts",
+      "detection",
+      "multi-tenant",
+      "xql"
+    ]
+  },
+  {
+    "created_at": "2026-05-18T08:31:00Z",
+    "file": "202605180831_GoCortexSnippet.json",
+    "id": "202605180831",
+    "module": "Cortex XSIAM",
+    "module_slug": "cortex-xsiam",
+    "scenario": "Netsh portproxy pivot listener.",
+    "tags": [
+      "alerts",
+      "detection",
+      "multi-tenant",
+      "xql"
+    ]
+  },
+  {
+    "created_at": "2026-05-18T08:30:00Z",
+    "file": "202605180830_GoCortexSnippet.json",
+    "id": "202605180830",
+    "module": "Cortex XDR",
+    "module_slug": "cortex-xdr",
+    "scenario": "Ntdsutil IFM extraction of NTDS.dit.",
+    "tags": [
+      "alerts",
+      "detection",
+      "multi-tenant",
+      "xql"
+    ]
+  },
+  {
+    "created_at": "2026-05-18T08:25:00Z",
+    "file": "202605180825_GoCortexSnippet.json",
+    "id": "202605180825",
+    "module": "Cortex XDR",
+    "module_slug": "cortex-xdr",
+    "scenario": "Wmic remote process creation.",
+    "tags": [
+      "alerts",
+      "detection",
+      "xql"
+    ]
+  },
+  {
     "created_at": "2026-05-18T05:11:00Z",
     "file": "202605180511_GoCortexSnippet.json",
     "id": "202605180511",

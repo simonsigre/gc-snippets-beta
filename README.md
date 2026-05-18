@@ -10,17 +10,20 @@ change the structure of this page, edit the generator.
 
 # GoCortex Snippets
 
-7 snippets published. Newest first.
+10 snippets published. Newest first.
 
 | Published (UTC) | Module | Scenario |
 | --- | --- | --- |
-| [2026-05-18 05:11 UTC](snippets/202605180511_GoCortexSnippet.json) | Cortex XDR | Mshta fetching a remote HTA |
-| [2026-05-18 03:58 UTC](snippets/202605180358_GoCortexSnippet.json) | Cortex XDR | Rundll32 loading a DLL by export with an HTTP path |
-| [2026-05-18 03:47 UTC](snippets/202605180347_GoCortexSnippet.json) | Cortex XDR | PowerShell encoded command-line |
-| [2026-05-15 06:18 UTC](snippets/202605150618_GoCortexSnippet.json) | Cortex XSIAM | Attackers use compromised WordPress sites to show fake "Verify you are human" prompts. These prompts trick users into running a PowerShell command from their clipboard, which then downloads and executes Vidar Stealer in memory. |
-| [2026-05-11 05:22 UTC](snippets/202605110522_GoCortexSnippet.json) | Cortex XSIAM | Whilst monitoring a high-value workstation, a security analyst recognises an unusual process attempting to reach out to a suspicious public IP address. Rather than abruptly terminating the connection—which might alert a sophisticated adversary that their presence has been detected—the team chooses to quietly steer this traffic towards a secure internal sinkhole.<br><br>Upon investigation, the Analyst identifies additional IP addresses that need to be sinkholed and adds these to the array.<br> |
-| [2026-05-10 03:16 UTC](snippets/202605100316_GoCortexSnippet.json) | Cortex XSIAM | A security analyst notices an increase in authentication alerts within a Cortex XDR and XSIAM environment. To determine whether this is normal user behaviour or a possible brute-force attack, the analyst runs an XQL query to identify repeated failed login attempts coming from the same IP address.<br><br>The query searches authentication logs from the past 24 hours and highlights accounts with more than five failed sign-in attempts from a single remote IP. |
-| [2026-05-02 11:15 UTC](snippets/202605021115_GoCortexSnippet.json) | Cortex XSIAM | My Test Problem. |
+| [2026-05-18 09:15 UTC](snippets/202605180915_GoCortexSnippet.json) | Cortex XDR | Microsoft Defender exclusion added at the command line. |
+| [2026-05-18 09:14 UTC](snippets/202605180914_GoCortexSnippet.json) | Cortex XDR | Msiexec installing from a remote URL. |
+| [2026-05-18 09:13 UTC](snippets/202605180913_GoCortexSnippet.json) | Cortex XDR | WSL used to launch a Linux shell with network tooling. |
+| [2026-05-18 09:12 UTC](snippets/202605180912_GoCortexSnippet.json) | Cortex XDR | Office application spawning a script host or shell. |
+| [2026-05-18 09:11 UTC](snippets/202605180911_GoCortexSnippet.json) | Cortex XDR | Service created with sc.exe pointing at a script interpreter. |
+| [2026-05-18 09:10 UTC](snippets/202605180910_GoCortexSnippet.json) | Cortex XDR | Scheduled task created by a script-host parent. |
+| [2026-05-18 09:09 UTC](snippets/202605180909_GoCortexSnippet.json) | Cortex XDR | Run key persistence written via reg.exe. |
+| [2026-05-18 09:06 UTC](snippets/202605180906_GoCortexSnippet.json) | Cortex XDR | Browser credential file access. |
+| [2026-05-18 09:04 UTC](snippets/202605180904_GoCortexSnippet.json) | Cortex XDR | Remote management and monitoring tool execution. |
+| [2026-05-18 09:02 UTC](snippets/202605180902_GoCortexSnippet.json) | Cortex XDR | ESXi-targeted command strings on a Windows host. |
 
 ## Licence
 

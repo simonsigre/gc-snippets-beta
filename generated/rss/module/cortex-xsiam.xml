@@ -5,8 +5,43 @@
     <link>https://snippets.gocortex.io/</link>
     <description>Short, actionable Cortex tips, published as they ship. (Cortex XSIAM only.)</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 15 May 2026 06:18:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 18 May 2026 08:59:00 +0000</lastBuildDate>
     <atom:link href="https://snippets.gocortex.io/module/cortex-xsiam.rss" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Cortex XSIAM] USN change journal deletion.</title>
+      <link>https://snippets.gocortex.io/module/cortex-xsiam</link>
+      <guid isPermaLink="false">gocortex-snippet-202605180859</guid>
+      <pubDate>Mon, 18 May 2026 08:59:00 +0000</pubDate>
+      <category>Cortex XSIAM</category>
+      <description>USN change journal deletion.
+
+Imagine an actor who has finished their hands-on activity and
+clears the NTFS USN change journal to frustrate forensic timelining. The
+`fsutil usn deletejournal` command is the standard means and is rarely run
+in normal operations.
+
+- https://attack.mitre.org/techniques/T1070/
+- https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil-usn
+
+Logic: very low base rate; almost any hit warrants triage. The `causality_actor_process_image_name` will usually be `cmd.exe` or `powershell.exe` for operator activity.</description>
+    </item>
+    <item>
+      <title>[Cortex XSIAM] Netsh portproxy pivot listener.</title>
+      <link>https://snippets.gocortex.io/module/cortex-xsiam</link>
+      <guid isPermaLink="false">gocortex-snippet-202605180831</guid>
+      <pubDate>Mon, 18 May 2026 08:31:00 +0000</pubDate>
+      <category>Cortex XSIAM</category>
+      <description>Netsh portproxy pivot listener.
+
+Scenario: imagine an environment in which a compromised edge or jump host is being used as a TCP relay so the operator&apos;s true source address is hidden behind a victim IP. The hallmark is a `netsh interface portproxy add v4tov4` listener.
+
+- https://attack.mitre.org/techniques/T1090/001/
+- https://www.cisa.gov/news-events/cybersecurity-advisories/aa24-038a
+
+Logic: matches the exact `add v4tov4` form. The `connectaddress=` value in
+the command line tells you where the relay points; investigate any value
+outside your management ranges.</description>
+    </item>
     <item>
       <title>[Cortex XSIAM] Attackers use compromised WordPress sites to show fake &quot;Verify you are human&quot; prompts. These prompts trick users into running a PowerShell command from their clipboard, which then downloads and executes Vidar Stealer in memory.</title>
       <link>https://snippets.gocortex.io/module/cortex-xsiam</link>
