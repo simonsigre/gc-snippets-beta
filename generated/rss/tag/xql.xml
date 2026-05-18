@@ -5,8 +5,26 @@
     <link>https://snippets.gocortex.io/</link>
     <description>Short, actionable Cortex tips, published as they ship. (Tagged &quot;xql&quot;.)</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 18 May 2026 03:58:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 18 May 2026 05:11:00 +0000</lastBuildDate>
     <atom:link href="https://snippets.gocortex.io/tag/xql.rss" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Cortex XDR] Mshta fetching a remote HTA</title>
+      <link>https://snippets.gocortex.io/module/cortex-xdr</link>
+      <guid isPermaLink="false">gocortex-snippet-202605180511</guid>
+      <pubDate>Mon, 18 May 2026 05:11:00 +0000</pubDate>
+      <category>Cortex XDR</category>
+      <description>Mshta fetching a remote HTA
+
+Scenario: imagine an environment where a phishing lure persuades a user to
+open a link that ultimately invokes `mshta.exe` against a remote `.hta` file.
+HTAs run with full Windows scripting capability and remain a steady choice
+for initial access through 2025-2026.
+
+Logic: any `mshta.exe` invocation with an HTTP URL or an inline script URI is high-signal. Pair the parent process and user with the destination host in `action_external_hostname` for follow-up.
+
+- https://attack.mitre.org/techniques/T1218/005/
+- https://lolbas-project.github.io/lolbas/Binaries/Mshta/</description>
+    </item>
     <item>
       <title>[Cortex XDR] Rundll32 loading a DLL by export with an HTTP path</title>
       <link>https://snippets.gocortex.io/module/cortex-xdr</link>

@@ -10,10 +10,11 @@ change the structure of this page, edit the generator.
 
 # GoCortex Snippets
 
-6 snippets published. Newest first.
+7 snippets published. Newest first.
 
 | Published (UTC) | Module | Scenario |
 | --- | --- | --- |
+| [2026-05-18 05:11 UTC](snippets/202605180511_GoCortexSnippet.json) | Cortex XDR | Mshta fetching a remote HTA |
 | [2026-05-18 03:58 UTC](snippets/202605180358_GoCortexSnippet.json) | Cortex XDR | Rundll32 loading a DLL by export with an HTTP path |
 | [2026-05-18 03:47 UTC](snippets/202605180347_GoCortexSnippet.json) | Cortex XDR | PowerShell encoded command-line |
 | [2026-05-15 06:18 UTC](snippets/202605150618_GoCortexSnippet.json) | Cortex XSIAM | Attackers use compromised WordPress sites to show fake "Verify you are human" prompts. These prompts trick users into running a PowerShell command from their clipboard, which then downloads and executes Vidar Stealer in memory. |

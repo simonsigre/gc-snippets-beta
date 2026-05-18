@@ -2,7 +2,11 @@
   "agent": [
     "202605100316_GoCortexSnippet.json"
   ],
+  "alerts": [
+    "202605180511_GoCortexSnippet.json"
+  ],
   "detection": [
+    "202605180511_GoCortexSnippet.json",
     "202605180358_GoCortexSnippet.json",
     "202605150618_GoCortexSnippet.json",
     "202605110522_GoCortexSnippet.json",
@@ -15,6 +19,7 @@
     "202605021115_GoCortexSnippet.json"
   ],
   "multi-tenant": [
+    "202605180511_GoCortexSnippet.json",
     "202605180358_GoCortexSnippet.json",
     "202605110522_GoCortexSnippet.json",
     "202605021115_GoCortexSnippet.json"
@@ -27,6 +32,7 @@
     "202605110522_GoCortexSnippet.json"
   ],
   "xql": [
+    "202605180511_GoCortexSnippet.json",
     "202605180358_GoCortexSnippet.json",
     "202605150618_GoCortexSnippet.json",
     "202605110522_GoCortexSnippet.json",
