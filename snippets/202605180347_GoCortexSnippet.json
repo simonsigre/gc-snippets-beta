@@ -9,8 +9,9 @@
   "id": "202605180347",
   "module_slug": "cortex-xdr",
   "product_module": "Cortex XDR",
+  "scenario": "PowerShell encoded command-line"
   "scenario": "Imagine an environment in which an operator wants to run PowerShell without leaving readable script text on the command line. They base64-encode the payload and pass it via `-EncodedCommand` (or its short forms `-enc`, `-e`). This is a long-standing living-off-the-land pattern that still appears through 2025-2026 in initial-access and lateral-movement chains.",
   "schema_version": 1,
-  "snippet": "- https://attack.mitre.org/techniques/T1059/001/\n- https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_powershell_exe",
+  "snippet": " Scenario: imagine an environment in which an operator wants to run PowerShell without leaving readable script text on the command line. They base64-encode the payload and pass it via `-EncodedCommand` (or its short forms `-enc`, `-e`). This is a long-standing living-off-the-land pattern that still appears through 2025-2026 in initial-access and lateral-movement chains. - https://attack.mitre.org/techniques/T1059/001/ - https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_powershell_exe",
   "time_to_implement": "5 minutes"
 }
