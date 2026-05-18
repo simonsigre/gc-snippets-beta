@@ -1,0 +1,22 @@
+{
+  "code_blocks": [
+    {
+      "code": "dataset = xdr_data\n| filter _time > to_timestamp(current_time() - 86400 * 7, \"SECONDS\")\n| filter event_type = ENUM.PROCESS and event_sub_type = ENUM.PROCESS_START\n| filter lowercase(action_process_image_name) = \"mshta.exe\"\n| filter lowercase(action_process_image_command_line) contains \"http\"\n    or lowercase(action_process_image_command_line) contains \"javascript:\"\n    or lowercase(action_process_image_command_line) contains \"vbscript:\"\n| fields _time, agent_hostname, actor_effective_username,\n    causality_actor_process_image_name, action_process_image_command_line\n| limit 200",
+      "language": "xql"
+    }
+  ],
+  "created_at": "2026-05-18T05:11:00Z",
+  "id": "202605180511",
+  "module_slug": "cortex-xdr",
+  "product_module": "Cortex XDR",
+  "scenario": "Mshta fetching a remote HTA",
+  "schema_version": 1,
+  "snippet": "Scenario: imagine an environment where a phishing lure persuades a user to\nopen a link that ultimately invokes `mshta.exe` against a remote `.hta` file.\nHTAs run with full Windows scripting capability and remain a steady choice\nfor initial access through 2025-2026.\n\nLogic: any `mshta.exe` invocation with an HTTP URL or an inline script URI is high-signal. Pair the parent process and user with the destination host in `action_external_hostname` for follow-up.\n\n- https://attack.mitre.org/techniques/T1218/005/\n- https://lolbas-project.github.io/lolbas/Binaries/Mshta/",
+  "tags": [
+    "alerts",
+    "detection",
+    "multi-tenant",
+    "xql"
+  ],
+  "time_to_implement": "5 minutes"
+}
